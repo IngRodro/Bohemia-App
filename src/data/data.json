@@ -1,0 +1,104 @@
+{
+  "deptos": [
+    {"id" : 0, "name" : "Seleccione un departamento",
+      "municipios": ["Seleccione un municipio"]
+    },
+    { "id":1,
+      "name":"Ahuachapán",
+      "municipios": ["Seleccione un municipio","Ahuachapán","Apaneca","Atiquizaya","Concepción de Ataco","El Refugio","Guaymango","Jujutla",
+        "San Francisco Menéndez","San Lorenzo","San Pedro Puxtla","Tacuba","Turín"]
+    },
+    {
+      "id":2,
+      "name":"Cabañas",
+      "municipios" : ["Seleccione un municipio","Cinquera","Dolores (Villa Doleres)","Guacotecti","Ilobasco","Jutiapa","San Isidro",
+        "Sensuntepeque","Tejutepeque","Victoria"]
+    },
+    {
+      "id":3,
+      "name":"Chalatenango",
+      "municipios": ["Seleccione un municipio", "Agua Caliente","Arcatao","Azacualpa","Chalatenango","Citalá","Comalapa","Concepción Quezaltepeque",
+        "Dulce Nombre de María","El Carrizal","El Paraíso","La Laguna","La Palma","La Reina","Las Vueltas","Nombre de Jesús","Nueva Concepción",
+        "Nueva Trinidad","Ojos de Agua","Potonico","San Antonio de la Cruz","San Antonio Los Ranchos","San Fernando","San Francisco Lempa",
+        "San Francisco Morazán","San Ignacio","San Isidro Labrador","San José Cancasque (Cancasque)","San José Las Flores","San Luis del Carmen",
+        "San Miguel de Mercedes","San Rafael","Santa Rita","Tejutla"]
+    },
+    {
+      "id":4,
+      "name":"Cuscatlán",
+      "municipios": ["Seleccione un municipio","Candelaria","Cojutepeque","El Carmen","El Rosario","Monte San Juan","Oratorio de Concepción","San Bartolomé Perulapía",
+        "San Cristóbal","San José Guayabal","San Pedro Perulapán","San Rafael Cedros","San Ramón","Santa Cruz Analquito","Santa Cruz Michapa",
+        "Suchitoto","Tenancingo"]
+    },
+    {
+      "id":5,
+      "name":"Morazán",
+      "municipios": ["Seleccione un municipio","Arambala","Cacaopera","Chilanga","Corinto","Delicias de Concepción","El Divisadero","El Rosario","Gualococti",
+        "Guatajiagua","Joateca","Jocoaitique","Jocoro","Lolotiquillo","Meanguera","Osicala","Perquín","San Carlos","San Fernando",
+        "San Francisco Gotera","San Isidro","San Simón","Sensembra","Sociedad","Torola","Yamabal","Yoloaiquín"]
+    },
+    {
+      "id":6,
+      "name":"La Libertad",
+      "municipios": ["Seleccione un municipio","Antiguo Cuscatlán","Chiltiupán","Ciudad Arce","Colón","Comasagua","Huizúcar","Jayaque","Jicalapa",
+        "La Libertad","Santa Tecla (Nueva San Salvador)","Nuevo Cuscatlán","San Juan Opico","Quezaltepeque","Sacacoyo",
+        "San José Villanueva","San Matías","San Pablo Tacachico","Talnique","Tamanique","Teotepeque","Tepecoyo","Zaragoza"]
+    },
+    {
+      "id":7,
+      "name":"La Paz",
+      "municipios": ["Seleccione un municipio","Cuyultitán","El Rosario (Rosario de La Paz)","Jerusalén","Mercedes La Ceiba","Olocuilta","Paraíso de Osorio",
+        "San Antonio Masahuat","San Emigdio","San Francisco Chinameca","San Juan Nonualco","San Juan Talpa","San Juan Tepezontes",
+        "San Luis La Herradura","San Luis Talpa","San Miguel Tepezontes","San Pedro Masahuat","San Pedro Nonualco","San Rafael Obrajuelo",
+        "Santa María Ostuma","Santiago Nonualco","Tapalhuaca","Zacatecoluca"]
+    },
+    {
+      "id":8,
+      "name":"La Unión",
+      "municipios" : ["Seleccione un municipio","Anamorós","Bolívar","Concepción de Oriente","Conchagua","El Carmen","El Sauce","Intipucá","La Unión","Lilisque",
+        "Meanguera del Golfo","Nueva Esparta","Pasaquina","Polorós","San Alejo","San José","Santa Rosa de Lima","Yayantique","Yucuaiquín"]
+    },
+    {
+      "id":9,
+      "name":"San Miguel",
+      "municipios" : ["Seleccione un municipio","Carolina","Chapeltique","Chinameca","Chirilagua","Ciudad Barrios","Comacarán","El Tránsito","Lolotique",
+        "Moncagua","Nueva Guadalupe","Nuevo Edén de San Juan","Quelepa","San Antonio del Mosco","San Gerardo","San Jorge",
+        "San Luis de la Reina","San Miguel","San Rafael Oriente","Sesori","Uluazapa"]
+    },
+    {
+      "id":10,
+      "name":"San Salvador",
+      "municipios" : ["Seleccione un municipio","Aguilares","Apopa","Ayutuxtepeque","Ciuddad Delgado","Cuscatancingo","El Paisnal","Guazapa","Ilopango",
+        "Mejicanos","Nejapa","Panchimalco","Rosario de Mora","San Marcos","San Martín","San Salvador","Santiago Texacuangos","Santo Tomás",
+        "Soyapango","Tonacatepeque"]
+    },
+    {
+      "id":11,
+      "name":"San Vicente",
+      "municipios": ["Seleccione un municipio","Apastepeque","Guadalupe","San Cayetano Istepeque","San Esteban Catarina","San Ildefonso","San Lorenzo",
+        "San Sebastián","San Vicente","Santa Clara","Santo Domingo","Tecoluca","Tepetitán","Verapaz"]
+    },
+    {
+      "id":12,
+      "name":"Santa Ana",
+      "municipios" : ["Seleccione un municipio","Candelaria de la Frontera","Chalchuapa","Coatepeque","El Congo","El Porvenir","Masahuat","Metapán",
+        "San Antonio Pajonal","San Sebastián Salitrillo","Santa Ana","Santa Rosa Guachipilín","Santiago de la Frontera","Texistepeque"]
+    },
+    {
+      "id":13,
+      "name":"Sonsonate",
+      "municipios": ["Seleccione un municipio","Acajutla","Armenia","Caluco","Cuisnahuat","Izalco","Juayúa","Nahuizalco","Nahulingo","Salcoatitán",
+        "San Antonio del Monte","San Julián","Santa Catarina Masahuat","Santa Isabel Ishuatán","Santo Domingo de Guzmán","Sonsonate",
+        "Sonzacate"]
+    },
+    {
+      "id":14,
+      "name":"Usulután",
+      "municipios" : ["Seleccione un municipio","Alegría","Berlín","California","Concepción Batres","El Triunfo","Ereguayquín","Estanzuelas","Jiquilisco",
+        "Jucuapa","Jucuarán","Mercedes Umaña","Nueva Granada","Ozatlán","Puerto El Triunfo","San Agustín","San Buenaventura",
+        "San Dionisio","San Francisco Javier","Santa Elena","Santa María","Santiago de María","Tecapán","Usulután"]
+
+    }
+  ]
+
+}

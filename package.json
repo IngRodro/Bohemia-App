@@ -1,0 +1,57 @@
+{
+  "name": "react_02",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.8.1",
+    "@styled-icons/boxicons-regular": "^10.38.0",
+    "@styled-icons/evaicons-outline": "^10.34.0",
+    "@styled-icons/fluentui-system-filled": "^10.35.0",
+    "@styled-icons/fluentui-system-regular": "^10.35.0",
+    "@styled-icons/heroicons-solid": "^10.36.0",
+    "@styled-icons/material-sharp": "^10.34.0",
+    "axios": "^0.27.2",
+    "components": "^0.1.0",
+    "framer-motion": "^6.3.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-grid-system": "^8.1.5",
+    "react-modal": "^3.15.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.3.2",
+    "styled-components": "^5.3.5",
+    "styled-icons": "^10.45.0",
+    "sweetalert2": "^11.4.15",
+    "sweetalert2-react-content": "^5.0.0",
+    "universal-cookie": "^4.0.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "format": "prettier --write .",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  }
+}
