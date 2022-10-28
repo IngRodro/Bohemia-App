@@ -10,6 +10,7 @@ import { PaginationContainer, StyledPagination } from '../style';
 import CreateorUpdateProduct from 'components/Molecules/Modals/CreateorUpdateProduct/CreateorUpdateProduct';
 import useModal from 'hooks/useModal';
 import useMutation from '../../hooks/useMutation';
+import NotFoundPage from '../../components/Organisms/NotFoundPage';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -24,16 +25,13 @@ const Toast = Swal.mixin({
 });
 
 function Products() {
-  //Se ocupa
   const [productEdit, setProductEdit] = useState(null);
-  //No se ocupa
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
-  //Se ocupa
   const { visible, onToggle } = useModal();
   const { visible: isUpdate, onHidden, onVisible } = useModal();
   const { token } = useAuth();
-  const { data, loading, refresh } = useQuery(`/products`, page, '', '', true);
+  const { data, loading, refresh } = useQuery(`/products`, page, '', true);
   const [DeleteProduct] = useMutation(`/products`, {
     method: 'delete',
     refresh: async () => {
@@ -78,12 +76,10 @@ function Products() {
     });
   };
 
-  //No se ocupa
   useEffect(() => {
     setTotalPages(data?.totalPages);
   }, [data?.totalPages]);
 
-  //Se ocupa
   return (
     <Layout>
       <HeaderPage title="Products" onRefresh={refresh} onAdd={onToggle} />
@@ -91,7 +87,9 @@ function Products() {
         <p>
           <b>Loading...</b>
         </p>
-      ) : (
+      ) : data === null || data.length===0 ? (
+        <NotFoundPage message={'Oops! Aun no has registrado ningun producto'} />
+        ) : (
         <Row>
           {data?.products?.map((prod) => (
             <Col key={prod.id} xs={12} md={6} lg={4}>

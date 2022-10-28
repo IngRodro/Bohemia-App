@@ -16,6 +16,7 @@ const AddProductModal = ({
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
+
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
     useMutation(isUpdate ? `/products/${product?.id}` : '/products', {
       method: isUpdate ? 'put' : 'post', // post = create, put = update

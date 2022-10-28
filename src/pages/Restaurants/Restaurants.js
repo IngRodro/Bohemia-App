@@ -1,16 +1,18 @@
 import Layout from '../../components/Organisms/Layout';
-import { Col, Row } from 'react-grid-system';
+import {Col, Row} from 'react-grid-system';
 import useQuery from '../../hooks/useQuery';
 import HeaderPage from '../../components/Molecules/HeaderPage';
 import Card from '../../components/Molecules/Cards/CardProducts';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import useModal from '../../hooks/useModal';
-import { useAuth } from '../../Context/AuthContext';
+import {useAuth} from '../../Context/AuthContext';
 import useMutation from '../../hooks/useMutation';
-import { PaginationContainer, StyledPagination } from '../style';
-import CreateorUpdateRestaurant from '../../components/Molecules/Modals/CreateorUpdateRestaurant/CreateorUpdateRestaurant';
+import {PaginationContainer, StyledPagination} from '../style';
+import CreateorUpdateRestaurant
+  from '../../components/Molecules/Modals/CreateorUpdateRestaurant/CreateorUpdateRestaurant';
+import NotFoundPage from '../../components/Organisms/NotFoundPage';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -25,16 +27,13 @@ const Toast = Swal.mixin({
 });
 
 function Restaurants() {
-  //Se ocupa
   const [restaurantEdit, setRestaurantEdit] = useState(null);
-  //No se ocupa
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
-  //Se ocupa
-  const { visible, onToggle } = useModal();
-  const { visible: isUpdate, onHidden, onVisible } = useModal();
-  const { token } = useAuth();
-  const { data, loading, refresh } = useQuery(
+  const {visible, onToggle} = useModal();
+  const {visible: isUpdate, onHidden, onVisible} = useModal();
+  const {token} = useAuth();
+  const {data, loading, refresh} = useQuery(
     '/restaurants/byUser',
     null,
     true
@@ -76,7 +75,7 @@ function Restaurants() {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.value) {
-        await DeleteRestaurant({ idDelete: id });
+        await DeleteRestaurant({idDelete: id});
         await refresh();
         await Toast.fire({
           icon: 'success',
@@ -100,34 +99,38 @@ function Restaurants() {
         <p>
           <b>Loading...</b>
         </p>
+      ) : data === null || data.length === 0 ? (
+        <NotFoundPage message={'Oops! Aun no has registrado ningun restuarante'}></NotFoundPage>
       ) : (
-        <Row>
-          {data?.map((restaurant) => (
-            <Col key={restaurant.id} xs={12} md={6} lg={4}>
-              <Card
-                name={restaurant.name}
-                image={restaurant.image.secure_url}
-                action={() => navigate(`/app/menus/${restaurant.id}`)}
-                isActionButtons={true}
-                onDelete={() => onDelete(restaurant.id)}
-                onUpdate={async () => onEdit(restaurant)}
-              />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row>
+            {data?.map((restaurant) => (
+              <Col key={restaurant.id} xs={12} md={6} lg={4}>
+                <Card
+                  name={restaurant.name}
+                  image={restaurant.image.secure_url}
+                  menu={() => navigate(`/app/menus/${restaurant.id}`)}
+                  isActionButtons={true}
+                  onDelete={() => onDelete(restaurant.id)}
+                  onUpdate={async () => onEdit(restaurant)}
+                />
+              </Col>
+            ))}
+          </Row>
+          <PaginationContainer>
+            <StyledPagination
+              count={totalPages}
+              variant="outlined"
+              shape="rounded"
+              size="large"
+              page={page}
+              onChange={(e, page) => {
+                setPage(page);
+              }}
+            />
+          </PaginationContainer>
+        </>
       )}
-      <PaginationContainer>
-        <StyledPagination
-          count={totalPages}
-          variant="outlined"
-          shape="rounded"
-          size="large"
-          page={page}
-          onChange={(e, page) => {
-            setPage(page);
-          }}
-        />
-      </PaginationContainer>
       <CreateorUpdateRestaurant
         product={restaurantEdit}
         isOpen={visible}

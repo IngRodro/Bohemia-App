@@ -12,7 +12,6 @@ import SignUp from '../../Molecules/Sign/SignUp';
 import { AppSignProvider, useAppSign } from '../../../Context/signContext';
 
 const SignForm = () => {
-  console.log();
 
   return (
     <AppSignProvider>

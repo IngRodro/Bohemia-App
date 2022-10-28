@@ -56,7 +56,6 @@ const useMutation = (url, opts = defaultOptions) => {
         }
         return { data, loading: false, errors: null, headers };
       } catch (err) {
-        console.log(err);
         setErrors(err);
         setData(null);
         setLoading(false);

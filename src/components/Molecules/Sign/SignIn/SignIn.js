@@ -46,7 +46,6 @@ const SignInForm = () => {
         });
       } else {
         await login(Username, Password);
-        window.location.reload();
       }
     }
   };

@@ -1,8 +1,8 @@
 import React from 'react';
 import './NotFoundPage.css';
 
-class NotFoundPage extends React.Component {
-  render() {
+const NotFoundPage = ({ message}) => {
+   {
     return (
      <>
        <div id="notfound">
@@ -10,7 +10,7 @@ class NotFoundPage extends React.Component {
             <div className="notfound-404">
               <h1>404</h1>
             </div>
-            <h2>Oops! Aun no se han registrado restaurantes para este lugar</h2>
+            <h2>{message}</h2>
           </div>
        </div>
      </>

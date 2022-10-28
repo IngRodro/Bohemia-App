@@ -9,7 +9,6 @@ import {
 import useMutation from 'hooks/useMutation';
 import Cookies from 'universal-cookie';
 import config from '../config';
-import Swal from 'sweetalert2';
 const { ROUTES } = config;
 
 const defaultValue = {
@@ -19,7 +18,6 @@ const defaultValue = {
   loadingAuth: false,
   logout: () => {},
   login: (_email, _password) => {
-    console.log(_email, _password);
   },
   signUp: (_data) => new Promise(() => {}),
 };

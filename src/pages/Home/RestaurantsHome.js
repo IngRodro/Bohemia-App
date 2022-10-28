@@ -43,8 +43,6 @@ function RestaurantsHome() {
     setTotalPages(data?.totalPages || 0);
   }, [data?.totalPages]);
 
-  console.log(data);
-
   return (
     <Layout>
       <HeaderPage
@@ -69,7 +67,7 @@ function RestaurantsHome() {
           <b>Loading...</b>
         </p>
       ) : data === null ? (
-        <NotFoundPage></NotFoundPage>
+        <NotFoundPage message={'Oops! Aun no se han registrado restaurantes para este lugar'}></NotFoundPage>
       ) : (<>
         <Row>
           {data?.restaurants?.map(
