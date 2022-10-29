@@ -51,12 +51,13 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(
     async (username, password) => {
       setLoading(true);
-      const { headers } = await SignIn({ variables: { username, password } });
+      const { headers, errors } = await SignIn({ variables: { username, password } });
       setLoading(false);
       if (headers) {
         persisUser(headers['auth-token']);
         setToken(headers['auth-token']);
       }
+      return errors;
     },
     [persisUser]
   );
@@ -64,13 +65,15 @@ export const AuthProvider = ({ children }) => {
   const signUp = useCallback(
     async (payload) => {
       setLoading(true);
-      await SignUp({ variables: payload });
-
+      const { errors } = await SignUp({ variables: payload });
       setLoading(false);
+
       if (dataSignUp) {
         persisUser(dataSignUp);
         setToken(dataSignUp);
       }
+
+      return errors;
     },
     [persisUser]
   );

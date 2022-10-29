@@ -46,30 +46,22 @@ const SignInForm = () => {
         username,
         password,
       };
-      await signUp(payload)
-        .then(async (res) => {
-          await MySwal.fire({
-            title: 'Success',
-            text: 'You have successfully signed up',
-            icon: 'success',
-          });
-          ChangeSignForm('signIn');
-        })
-        .catch(async (err) => {
-          if (err.response.status === 409) {
-            await MySwal.fire({
-              title: 'Error',
-              text: 'Username already exists',
-              icon: 'error',
-            });
-          } else {
-            await MySwal.fire({
-              title: 'Error',
-              text: 'Something went wrong',
-              icon: 'error',
-            });
-          }
+      const result = await signUp(payload)
+      if(result?.response?.data?.message){
+        await Swal.fire({
+          title: 'Error',
+          text: result.response.data.message,
+          icon: 'error',
         });
+        e.target.username.value = '';
+      }else{
+        await Swal.fire({
+          title: 'Success',
+          text: 'Usuario creado correctamente',
+          icon: 'success',
+        });
+        ChangeSignForm('signIn');
+      }
     }
   };
 
@@ -113,6 +105,7 @@ const SignInForm = () => {
           type="text"
           placeholder="Username"
           name={'username'}
+          id={'username'}
           onChange={handleChange}
           value={username}
         />

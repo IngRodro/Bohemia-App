@@ -45,7 +45,15 @@ const SignInForm = () => {
           confirmButtonText: 'Ok',
         });
       } else {
-        await login(Username, Password);
+        const result = await login(Username, Password);
+        if(result?.response?.data?.message){
+          await Swal.fire({
+            title: 'Error',
+            text: result.response.data.message,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          });
+        }
       }
     }
   };

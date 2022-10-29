@@ -113,6 +113,7 @@ function Restaurants() {
                   isActionButtons={true}
                   onDelete={() => onDelete(restaurant.id)}
                   onUpdate={async () => onEdit(restaurant)}
+                  onViewMenu={() => navigate(`/app/menus/${restaurant.id}`)}
                 />
               </Col>
             ))}

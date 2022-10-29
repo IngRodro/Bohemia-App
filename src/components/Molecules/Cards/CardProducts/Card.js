@@ -17,6 +17,7 @@ const CardRestaurant = ({
   isActionButtons,
   onDelete,
   onUpdate,
+  onViewMenu,
 }) => {
   return (
     <StyleWrapper onClick={action}>
@@ -73,6 +74,7 @@ const CardRestaurant = ({
               Delete
             </Button>
           )}
+          {onViewMenu && (<Button color={'primary'} onClick={() => onViewMenu()}>Ver Menu</Button>)}
         </ActionWrapper>
       )}
     </StyleWrapper>
