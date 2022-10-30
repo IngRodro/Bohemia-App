@@ -13,6 +13,7 @@ const AddRestaurantModal = ({
   isUpdate = false,
   restaurant = null,
 }) => {
+  console.log('restaurant', restaurant);
   const { token } = useAuth();
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
@@ -155,14 +156,14 @@ const AddRestaurantModal = ({
           name="openingHour"
           placeholder="OpeningHour"
           type="time"
-          defaultValue={restaurant?.opening_hour}
+          defaultValue={restaurant?.openingHour}
           required
         />
         <Input
           name="closingHour"
           placeholder="ClosingHour"
           type="time"
-          defaultValue={restaurant?.closing_hour}
+          defaultValue={restaurant?.closingHour}
           required
         />
         <Input

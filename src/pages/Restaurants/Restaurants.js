@@ -33,6 +33,7 @@ function Restaurants() {
   const {visible, onToggle} = useModal();
   const {visible: isUpdate, onHidden, onVisible} = useModal();
   const {token} = useAuth();
+  const [showMessage, setShowMessage] = useState(false);
   const {data, loading, refresh} = useQuery(
     '/restaurants/byUser',
     null,
@@ -64,14 +65,24 @@ function Restaurants() {
     setTotalPages(data?.totalPages);
   }, [data?.totalPages]);
 
+  useEffect(() => {
+    if (showMessage) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Restaurante actualizado correctamente',
+      });
+      setShowMessage(false);
+    }
+  }, [showMessage]);
+
   const onDelete = async (id) => {
     await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this restaurant!',
+      title: '¿Estas seguro?',
+      text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it',
+      confirmButtonText: '¡Si, borrar!',
+      cancelButtonText: '¡No, cancelar!',
       reverseButtons: true,
     }).then(async (result) => {
       if (result.value) {
@@ -79,7 +90,7 @@ function Restaurants() {
         await refresh();
         await Toast.fire({
           icon: 'success',
-          title: 'Restaurants deleted',
+          title: 'Restaurante eliminado correctamente',
           position: 'bottom-end',
         });
       }
@@ -133,7 +144,7 @@ function Restaurants() {
         </>
       )}
       <CreateorUpdateRestaurant
-        product={restaurantEdit}
+        restaurant={restaurantEdit}
         isOpen={visible}
         isUpdate={isUpdate}
         onRefresh={refresh}
@@ -142,5 +153,4 @@ function Restaurants() {
     </Layout>
   );
 }
-
 export default Restaurants;

@@ -7,6 +7,7 @@ import { ShowProductsModal } from '../ShowProducts';
 import useModal from 'hooks/useModal';
 import { AddButton, Text, DeleteIcon, InputStyled } from './style';
 import { Add } from '@styled-icons/fluentui-system-filled/Add';
+import Swal from 'sweetalert2';
 
 const AddMenuOptionModal = ({
   isOpen,
@@ -17,6 +18,7 @@ const AddMenuOptionModal = ({
   idRestaurant,
   isCloseModal = false,
   setIsCloseModal,
+  setShowMessage,
 }) => {
   const { visible, onToggle } = useModal();
   const [products, setProducts] = useState(menu?.products || []);
@@ -53,7 +55,7 @@ const AddMenuOptionModal = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await createOrUpdateMenus({
+    const { errors } = await createOrUpdateMenus({
       variables: {
         name: e.target.name.value,
         products: products.map((p) => {
@@ -64,6 +66,18 @@ const AddMenuOptionModal = ({
         type: products.length > 1 ? 'combo' : 'product',
       },
     });
+
+    if (errors) {
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error al crear o actualizar la opción del menú',
+      });
+
+
+    } else {
+      setShowMessage(true);
+    }
   };
 
   const onAddProduct = () => {
@@ -106,14 +120,12 @@ const AddMenuOptionModal = ({
           required
           defaultValue={menu?.name}
         />
-        />
         <Input
           name="price"
           placeholder="Price"
           type="text"
           defaultValue={menu?.price}
           required
-        />
         />
         {products.length > 0 &&
           products.map((prod) => (

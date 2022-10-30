@@ -9,6 +9,7 @@ import Button from 'components/Atoms/Button';
 import Text from '../../../Atoms/Text';
 
 const CardMenu = ({
+  id,
   products,
   name,
   price,
@@ -16,6 +17,7 @@ const CardMenu = ({
   isActionButtons,
   onDelete,
   onUpdate,
+  setShowMessage,
 }) => {
   const isImage = products.length === 1;
   return (
@@ -32,7 +34,7 @@ const CardMenu = ({
           {products.map(({ product }) => {
             return (
               <StyleImage
-                key={product.id}
+                key={product.id + id}
                 loading="lazy"
                 src={product.image.secure_url}
               />
@@ -41,6 +43,12 @@ const CardMenu = ({
         </ImagesWrapper>
       )}
       <Title>{name}</Title>
+      <Text size={20}>Productos:</Text>
+      {products.map(
+        ({ product, quantity }) => {
+          return <Text key={id + quantity + product.id}>{quantity + ' ' + product.name}</Text>;
+        }
+      )}
       <Text size={22}>
         <strong style={{ fontSize: '22px' }}>Price:</strong> ${price.toFixed(2)}
       </Text>

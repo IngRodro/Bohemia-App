@@ -33,6 +33,7 @@ function Menus() {
   const [totalPages, setTotalPages] = useState(0);
   const { visible, onToggle } = useModal();
   const [menuEdit, setMenuEdit] = useState(null);
+  const [showMessage, setShowMessage] = useState(false);
   const { visible: isUpdate, onHidden, onVisible } = useModal();
   const [DeleteProduct] = useMutation(`/menu`, {
     method: 'delete',
@@ -89,6 +90,27 @@ function Menus() {
     setTotalPages(data?.totalPages);
   }, [data?.totalPages]);
 
+  useEffect(
+    () => {
+      if (showMessage) {
+        if(menuEdit){
+          Toast.fire({
+            icon: 'success',
+            title: 'Opción de menu actualizada',
+            position: 'bottom-end',
+          });
+        }else{
+          Toast.fire({
+            icon: 'success',
+            title: 'Opción de menu creada',
+            position: 'bottom-end',
+          });
+        }
+      }
+    },
+    [showMessage, menuEdit],
+  )
+
   return (
     <Layout>
       <HeaderPage title="Menu" onRefresh={refresh} onAdd={onAdd} />
@@ -103,6 +125,8 @@ function Menus() {
               <CardMenu
                 name={menu.name}
                 products={menu.products}
+                price={menu.price}
+                id={menu.id}
                 isActionButtons={true}
                 onUpdate={async () => onEdit(menu)}
                 onDelete={async () => onDelete(menu.id)}
@@ -131,6 +155,7 @@ function Menus() {
         onRefresh={refresh}
         isUpdate={isUpdate}
         menu={menuEdit}
+        setShowMessage={setShowMessage}
         isCloseModal={isCloseModal}
       />
     </Layout>

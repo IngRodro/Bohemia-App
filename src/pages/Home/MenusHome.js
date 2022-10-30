@@ -6,6 +6,7 @@ import CardMenu from 'components/Molecules/Cards/CardMenus';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { PaginationContainer, StyledPagination } from '../style';
+import NotFoundPage from '../../components/Organisms/NotFoundPage';
 
 function MenusHome() {
   const { id } = useParams();
@@ -30,7 +31,9 @@ function MenusHome() {
         <p>
           <b>Loading...</b>
         </p>
-      ) : (
+      ) : data===null || data.length===0 ? (
+        <NotFoundPage message={'Oops! El restaurante aun no tiene registrado un menu'}></NotFoundPage>
+        ) : (
         <Row>
           {data?.menus?.map((menu) => (
             <Col key={menu.id} xs={12} md={6} lg={4}>
@@ -38,6 +41,7 @@ function MenusHome() {
                 name={menu.name}
                 products={menu.products}
                 price={menu.price}
+                id={menu.id}
               />
             </Col>
           ))}
