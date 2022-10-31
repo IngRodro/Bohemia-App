@@ -33,7 +33,7 @@ function Restaurants() {
   const {visible, onToggle} = useModal();
   const {visible: isUpdate, onHidden, onVisible} = useModal();
   const {token} = useAuth();
-  const [showMessage, setShowMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState('');
   const {data, loading, refresh} = useQuery(
     '/restaurants/byUser',
     null,
@@ -97,6 +97,25 @@ function Restaurants() {
     });
   };
 
+  useEffect(
+    () => {
+      if (showMessage === 'edit') {
+        Toast.fire({
+          icon: 'success',
+          title: 'Restaurante actualizado correctamente',
+          position: 'bottom-end',
+        });
+      }else if(showMessage === 'add'){
+        Toast.fire({
+          icon: 'success',
+          title: 'Restaurante agregado correctamente',
+          position: 'bottom-end',
+        });
+      }
+    },
+    [showMessage],
+  )
+
   const navigate = useNavigate();
 
   return (
@@ -146,8 +165,9 @@ function Restaurants() {
       <CreateorUpdateRestaurant
         restaurant={restaurantEdit}
         isOpen={visible}
-        isUpdate={isUpdate}
+        isUpdate={isUpdate}g
         onRefresh={refresh}
+        setShowMessage={setShowMessage}
         onCancel={onClose}
       />
     </Layout>

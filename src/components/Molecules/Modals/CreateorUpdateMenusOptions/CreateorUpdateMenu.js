@@ -26,7 +26,7 @@ const AddMenuOptionModal = ({
 
   const [createOrUpdateMenus, { loading: loadingAddOrUpdateMenu }] =
     useMutation(isUpdate ? `/menu/${menu?.id}` : '/menu', {
-      method: isUpdate ? 'put' : 'post', // post = create, put = update
+      method: isUpdate ? 'put' : 'post',
       refresh: async () => {
         onCancel();
         await onRefresh();
@@ -66,17 +66,19 @@ const AddMenuOptionModal = ({
         type: products.length > 1 ? 'combo' : 'product',
       },
     });
-
     if (errors) {
       await Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Error al crear o actualizar la opción del menú',
       });
-
-
     } else {
-      setShowMessage(true);
+      if(isUpdate){
+        setShowMessage('edit');
+      }
+      else{
+        setShowMessage('add');
+      }
     }
   };
 

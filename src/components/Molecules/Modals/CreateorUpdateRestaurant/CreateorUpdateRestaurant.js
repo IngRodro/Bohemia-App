@@ -12,8 +12,8 @@ const AddRestaurantModal = ({
   onRefresh,
   isUpdate = false,
   restaurant = null,
+  setShowMessage,
 }) => {
-  console.log('restaurant', restaurant);
   const { token } = useAuth();
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
@@ -22,7 +22,7 @@ const AddRestaurantModal = ({
   const [imageSelected, setImageSelected] = useState(null);
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
     useMutation(isUpdate ? `/restaurants/${restaurant?.id}` : '/restaurants', {
-      method: isUpdate ? 'put' : 'post', // post = create, put = update
+      method: isUpdate ? 'put' : 'post',
       refresh: async () => {
         onCancel();
         await onRefresh();
@@ -32,8 +32,6 @@ const AddRestaurantModal = ({
         'auth-token': token,
       },
     });
-
-
 
   const dataMunicipality = [{value : "Seleccione un municipio", label: "Seleccione un municipio"}, {value: "Agua Caliente", label: "Agua Caliente"},
     {value: "Arcatao", label: "Arcatao"}, {value: "Azacualpa", label: "Azacualpa"},{value: "Chalatenango", label: "Chalatenango"},
@@ -83,9 +81,18 @@ const AddRestaurantModal = ({
     bodyFormData.append('phone', phone);
     bodyFormData.append('openingHour', openingHour);
     bodyFormData.append('closingHour', closingHour);
-    await createOrUpdateProduct({
+    const { errors } = await createOrUpdateProduct({
       variables: bodyFormData,
     });
+
+    if (!errors) {
+      if (isUpdate) {
+        setShowMessage('edit');
+      } else {
+        setShowMessage('add');
+      }
+    }
+
     setUrlImage(
       'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
     );

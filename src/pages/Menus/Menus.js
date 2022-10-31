@@ -92,23 +92,21 @@ function Menus() {
 
   useEffect(
     () => {
-      if (showMessage) {
-        if(menuEdit){
+      if (showMessage === 'edit') {
           Toast.fire({
             icon: 'success',
             title: 'Opción de menu actualizada',
             position: 'bottom-end',
           });
-        }else{
+        }else if(showMessage === 'add'){
           Toast.fire({
             icon: 'success',
             title: 'Opción de menu creada',
             position: 'bottom-end',
           });
         }
-      }
     },
-    [showMessage, menuEdit],
+    [showMessage],
   )
 
   return (
