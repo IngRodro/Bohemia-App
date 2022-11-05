@@ -12,6 +12,7 @@ const Input = ({
   required,
   className,
   display,
+  pattern,
   ...props
 }) => {
   return (
@@ -24,6 +25,7 @@ const Input = ({
       onBlur={onBlur}
       $display={display}
       onFocus={onFocus}
+      pattern={pattern}
       disabled={disabled}
       required={required}
       className={className}

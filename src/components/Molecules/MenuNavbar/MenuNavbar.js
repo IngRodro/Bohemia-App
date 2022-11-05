@@ -36,17 +36,17 @@ const MenuNavbar = () => {
             color="transparent"
             labelColor="text"
             $type={'PageItem'}
-            onClick={() => navigate('/app/products?page=1', { replace: true })}
+            onClick={() => navigate('/app/restaurants')}
           >
-            Products
+            Restaurantes
           </StyleMenuItem>
           <StyleMenuItem
             color="transparent"
             labelColor="text"
             $type={'PageItem'}
-            onClick={() => navigate('/app/restaurants')}
+            onClick={() => navigate('/app/products?page=1', { replace: true })}
           >
-            Restaurants
+            Productos Generales
           </StyleMenuItem>
           <StyleMenuItem
             color="transparent"

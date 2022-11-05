@@ -8,8 +8,8 @@ const config = {
       absolutePath: '/home/restaurants',
     },
     HOME_MENUS: {
-      path: 'home/menus/:id',
-      absolutePath: '/home/menus/:id',
+      path: 'home/menus/:id/:name',
+      absolutePath: '/home/menus/:id/:name',
     },
     RESTAURANTS: {
       path: 'restaurants',
@@ -20,8 +20,8 @@ const config = {
       absolutePath: '/app/products',
     },
     MENUS: {
-      path: 'menus/:id',
-      absolutePath: '/app/menus/:id',
+      path: 'menus/:id/:name',
+      absolutePath: '/app/menus/:id/:name',
     },
     LOGOUT: {
       path: 'logout',

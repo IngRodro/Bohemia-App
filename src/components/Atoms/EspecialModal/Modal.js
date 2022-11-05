@@ -15,7 +15,7 @@ const Modal = ({
   children,
   onCancel,
   title,
-  okText = 'Ok',
+  okText,
   okProps = {},
   cancelText = 'Cancel',
   cancelProps = {
@@ -60,7 +60,11 @@ const Modal = ({
               {cancelText}
             </Button>
           )}
-          <Button {...okProps}>{okText}</Button>
+          {okText && (
+            <Button color="primary" labelColor="white" {...okProps}>
+              {okText}
+            </Button>
+          )}
         </StyleFooter>
       </StyleBody>
     </LibModal>

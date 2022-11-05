@@ -1,10 +1,16 @@
-import Modal from 'components/Atoms/Modal';
+import Modal from 'components/Atoms/EspecialModal';
 import CardProducts from 'components/Molecules/Cards/CardProducts';
 import { Col, Row } from 'react-grid-system';
 import useQuery from 'hooks/useQuery';
+import CreateorUpdateProduct from '../CreateorUpdateProduct/CreateorUpdateProduct';
+import useModal from '../../../../hooks/useModal';
+import {useState} from 'react';
 
 const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
-  const { data, loading } = useQuery(`/products`);
+  const { data, loading, refresh } = useQuery(`/products`);
+  const { visible: visibleProduct, onToggle: onToggleProduct } = useModal();
+  const { onHidden, onVisible } = useModal();
+  const [isCloseModal, setIsCloseModal] = useState(true);
 
   const onCardClick = ({ id, name }) => {
     setProducts((prev) => {
@@ -18,15 +24,33 @@ const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
     onCancel();
   };
 
-  return (
+  const onClose = () => {
+    setIsCloseModal(true);
+    onHidden();
+    onToggleProduct();
+  };
+
+  const onAdd = () => {
+    setIsCloseModal(false);
+    onToggleProduct();
+  };
+
+  return (<>
     <Modal
       isOpen={isOpen}
       onCancel={onCancel}
-      title="Products"
-      okText="Ok"
+      title="Seleccione un Producto"
       cancelText="Cancel"
       width={720}
       closeButton={true}
+      okText={'Agregar nuevo Producto'}
+      okProps={
+        {
+          onClick: onAdd,
+          children: 'Agregar Producto',
+          type: 'primary',
+        }
+      }
     >
       {loading ? (
         <p>
@@ -46,6 +70,13 @@ const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
         </Row>
       )}
     </Modal>
+      <CreateorUpdateProduct
+        isOpen={visibleProduct}
+        onRefresh={refresh}
+        onCancel={onClose}
+        isCloseModal={isCloseModal}
+      />
+  </>
   );
 };
 

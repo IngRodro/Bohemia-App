@@ -6,8 +6,8 @@ export const StyleBody = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
-  min-width: 350px;
-  padding: 20px;
+  min-width: 920px;
+  padding: 40px;
 `;
 
 export const StyleFooter = styled.div`
@@ -53,8 +53,8 @@ export const customStyles = {
 };
 
 export const ScrollContainer = styled.div`
-  overflow-y: auto;
+  overflow-y: scroll;
   max-height: 400px;
   scroll-behavior: smooth;
-  padding: 0 5px;
+  padding: 0 20px;
 `;

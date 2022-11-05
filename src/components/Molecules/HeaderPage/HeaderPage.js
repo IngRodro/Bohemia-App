@@ -10,7 +10,7 @@ import {
 const HeaderPage = ({ title, onRefresh, child, onAdd }) => {
   return (
     <StyleWrapper>
-      <Title htmlTag="h1" size={75} lineHeight={75}>
+      <Title htmlTag="h1" size={48} lineHeight={75}>
         {title}
       </Title>
       <StyledChildWrapper>{child}</StyledChildWrapper>
@@ -22,7 +22,7 @@ const HeaderPage = ({ title, onRefresh, child, onAdd }) => {
         )}
         {onAdd && (
           <Button labelColor="white" onClick={onAdd}>
-            Add
+            Agregar
           </Button>
         )}
       </StyleActions>

@@ -25,7 +25,7 @@ const Toast = Swal.mixin({
 });
 
 function Menus() {
-  const { id, page = 1 } = useParams();
+  const { id, name, page = 1 } = useParams();
   const { data, loading, refresh } = useQuery(`/menu/${id}`);
   const { token } = useAuth();
   const [isCloseModal, setIsCloseModal] = useState(true);
@@ -111,7 +111,7 @@ function Menus() {
 
   return (
     <Layout>
-      <HeaderPage title="Menu" onRefresh={refresh} onAdd={onAdd} />
+      <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} onAdd={onAdd} />
       {loading ? (
         <p>
           <b>Loading...</b>
@@ -156,6 +156,7 @@ function Menus() {
         setShowMessage={setShowMessage}
         isCloseModal={isCloseModal}
       />
+
     </Layout>
   );
 }

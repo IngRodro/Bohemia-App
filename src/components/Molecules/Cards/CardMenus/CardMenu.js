@@ -43,7 +43,7 @@ const CardMenu = ({
         </ImagesWrapper>
       )}
       <Title>{name}</Title>
-      <Text size={20}>Productos:</Text>
+      <Text size={20}>Detalles:</Text>
       {products.map(
         ({ product, quantity }) => {
           return <Text key={id + quantity + product.id}>{quantity + ' ' + product.name}</Text>;

@@ -110,7 +110,7 @@ const AddMenuOptionModal = ({
       okText={isUpdate ? 'Edit' : 'Save'}
       okProps={{
         type: 'submit',
-        form: 'form-product',
+        form: 'form-menu',
         loading: loadingAddOrUpdateMenu,
       }}
     >

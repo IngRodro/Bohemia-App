@@ -139,11 +139,10 @@ function Restaurants() {
                 <Card
                   name={restaurant.name}
                   image={restaurant.image.secure_url}
-                  menu={() => navigate(`/app/menus/${restaurant.id}`)}
                   isActionButtons={true}
                   onDelete={() => onDelete(restaurant.id)}
                   onUpdate={async () => onEdit(restaurant)}
-                  onViewMenu={() => navigate(`/app/menus/${restaurant.id}`)}
+                  onViewMenu={() => navigate(`/app/menus/${restaurant.id}/${restaurant.name}`)}
                 />
               </Col>
             ))}

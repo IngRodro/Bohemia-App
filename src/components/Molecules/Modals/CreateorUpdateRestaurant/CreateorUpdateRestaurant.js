@@ -20,6 +20,7 @@ const AddRestaurantModal = ({
   );
   const [municipal, setMunicipal] = useState('');
   const [imageSelected, setImageSelected] = useState(null);
+  const [phone, setPhone] = useState('');
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
     useMutation(isUpdate ? `/restaurants/${restaurant?.id}` : '/restaurants', {
       method: isUpdate ? 'put' : 'post',
@@ -56,6 +57,41 @@ const AddRestaurantModal = ({
       );
     }
   }, [isUpdate, restaurant]);
+
+  const handleChangePhone = (e) => {
+    const { value } = e.target;
+    const regexObj = {
+      regex9: /^([0-9]{4})(-)([0-9]{4})$/,
+      regex8: /^([0-9]{4})(-)([0-9]{3})$/,
+      regex7: /^([0-9]{4})(-)([0-9]{2})$/,
+      regex6: /^([0-9]{4})(-)([0-9])$/,
+      regex5: /^([0-9]{4})(-)$/,
+      regex4: /^([0-9]{4})$/,
+      regex3: /^([0-9]{3})$/,
+      regex2: /^([0-9]{2})$/,
+      regex1: /^([0-9])$/,
+    }
+    if (value.length > 0 ) {
+      setPhone((prevState) => {
+        if (value.length > prevState.length && value.length <= 9) {
+          if (regexObj[`regex${value.length}`].test(value)) {
+            if(value.length === 4){
+              return value + '-';
+            }
+            return value;
+          }
+        } else if (value.length < prevState.length) {
+          if(value.length === 4){
+            return value.slice(0, -1);
+          }
+          return value;
+        }
+        return prevState;
+      });
+    } else if (value.length === 0) {
+      setPhone('');
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -109,6 +145,13 @@ const AddRestaurantModal = ({
     setMunicipal(e.value);
   };
 
+  const onChangePhone = (e) => {
+    const phone = e.target.value;
+    if (phone.length > 8) {
+      e.target.value = phone.substring(0, 8);
+    }
+  };
+
   return (
     <Modal
       width={400}
@@ -155,9 +198,11 @@ const AddRestaurantModal = ({
         <Input
           name="phone"
           placeholder="Phone"
-          type="text"
+          type="tel"
           defaultValue={restaurant?.phone}
           required
+          value={phone}
+          onChange={handleChangePhone}
         />
         <Input
           name="openingHour"

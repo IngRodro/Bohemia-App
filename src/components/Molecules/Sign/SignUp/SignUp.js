@@ -65,17 +65,23 @@ const SignInForm = () => {
     }
   };
 
+  const regexphonewithguion = /^([0-9]{3})-([0-9]{3})-([0-9]{4})$/;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
       case 'name':
-        setName((prevState) => {
-          if (value.split('')[value.length - 1].match(/[a-zA-Z\s]/)) {
-            return value;
-          } else {
-            return prevState;
-          }
-        });
+        if (value.length > 0) {
+          setName((prevState) => {
+            if (value.split('')[value.length - 1].match(/[a-zA-Z\s]/)) {
+              return value;
+            } else {
+              return prevState;
+            }
+          });
+        } else {
+          setName('');
+        }
         break;
       case 'username':
         setUsername(value);
