@@ -19,7 +19,7 @@ const Routes = () => {
     <AuthProvider>
       <BrowserRouter>
         <ReactRoutes>
-          <Route path="/" element={<PublicRoute />}>
+          <Route path="/" element={<PublicRoute/>}>
             <Route
               index
               path={ROUTES.HOME_RESTAURANTS.path}

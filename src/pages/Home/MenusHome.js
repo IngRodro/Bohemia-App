@@ -9,7 +9,7 @@ import { PaginationContainer, StyledPagination } from '../style';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
 
 function MenusHome() {
-  const { id } = useParams();
+  const { id, name } = useParams();
   const [page, setPage] = useState(1);
   const { data, loading, refresh } = useQuery(
     `/menu/show/${id}`,
@@ -26,7 +26,7 @@ function MenusHome() {
 
   return (
     <Layout>
-      <HeaderPage title="Menu" onRefresh={refresh} />
+      <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} />
       {loading ? (
         <p>
           <b>Loading...</b>

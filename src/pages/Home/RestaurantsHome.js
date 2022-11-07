@@ -92,7 +92,7 @@ function RestaurantsHome() {
                   phone={phone}
                   opening_hour={openingHour}
                   closing_hour={closingHour}
-                  action={() => navigate(`/home/menus/${id}`)}
+                  action={() => navigate(`/home/menus/${id}/${name}`)}
                   isActionButtons={true}
                 />
               </Col>
