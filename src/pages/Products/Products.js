@@ -31,7 +31,7 @@ function Products() {
   const { visible, onToggle } = useModal();
   const { visible: isUpdate, onHidden, onVisible } = useModal();
   const { token } = useAuth();
-  const { data, loading, refresh } = useQuery(`/products`, page, '', true);
+  const { data, loading, refresh, errors } = useQuery(`/products`, page, '', true);
   const [DeleteProduct] = useMutation(`/products`, {
     method: 'delete',
     refresh: async () => {

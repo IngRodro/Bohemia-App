@@ -1,16 +1,17 @@
 import Layout from 'components/Organisms/Layout';
-import { Col, Row } from 'react-grid-system';
+import {Col, Row} from 'react-grid-system';
 import useQuery from 'hooks/useQuery';
 import HeaderPage from 'components/Molecules/HeaderPage';
 import CardMenu from 'components/Molecules/Cards/CardMenus';
-import { useParams, useNavigate } from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import CreateOrUpdateMenu from 'components/Molecules/Modals/CreateorUpdateMenusOptions/CreateorUpdateMenu';
 import useModal from 'hooks/useModal';
-import { useEffect, useState } from 'react';
-import { PaginationContainer, StyledPagination } from '../style';
+import {useEffect, useState} from 'react';
+import {PaginationContainer, StyledPagination} from '../style';
 import Swal from 'sweetalert2';
 import useMutation from '../../hooks/useMutation';
-import { useAuth } from 'Context/AuthContext';
+import {useAuth} from 'Context/AuthContext';
+import NotFoundPage from '../../components/Organisms/NotFoundPage';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -25,16 +26,16 @@ const Toast = Swal.mixin({
 });
 
 function Menus() {
-  const { id, name, page = 1 } = useParams();
-  const { data, loading, refresh } = useQuery(`/menu/${id}`);
-  const { token } = useAuth();
+  const {id, name, page = 1} = useParams();
+  const {data, loading, refresh} = useQuery(`/menu/${id}`);
+  const {token} = useAuth();
   const [isCloseModal, setIsCloseModal] = useState(true);
   const navigate = useNavigate();
   const [totalPages, setTotalPages] = useState(0);
-  const { visible, onToggle } = useModal();
+  const {visible, onToggle} = useModal();
   const [menuEdit, setMenuEdit] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
-  const { visible: isUpdate, onHidden, onVisible } = useModal();
+  const {visible: isUpdate, onHidden, onVisible} = useModal();
   const [DeleteProduct] = useMutation(`/menu`, {
     method: 'delete',
     refresh: async () => {
@@ -63,7 +64,7 @@ function Menus() {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.value) {
-        await DeleteProduct({ idDelete: id });
+        await DeleteProduct({idDelete: id});
         await refresh();
         await Toast.fire({
           icon: 'success',
@@ -93,59 +94,65 @@ function Menus() {
   useEffect(
     () => {
       if (showMessage === 'edit') {
-          Toast.fire({
-            icon: 'success',
-            title: 'Opción de menu actualizada',
-            position: 'bottom-end',
-          });
-        }else if(showMessage === 'add'){
-          Toast.fire({
-            icon: 'success',
-            title: 'Opción de menu creada',
-            position: 'bottom-end',
-          });
-        }
+        Toast.fire({
+          icon: 'success',
+          title: 'Opción de menu actualizada',
+          position: 'bottom-end',
+        });
+      } else if (showMessage === 'add') {
+        Toast.fire({
+          icon: 'success',
+          title: 'Opción de menu creada',
+          position: 'bottom-end',
+        });
+      }
     },
     [showMessage],
   )
 
   return (
     <Layout>
-      <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} onAdd={onAdd} />
+      <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} onAdd={onAdd}/>
       {loading ? (
         <p>
           <b>Loading...</b>
         </p>
-      ) : (
-        <Row>
-          {data?.menus?.map((menu) => (
-            <Col key={menu.id} xs={12} md={6} lg={4}>
-              <CardMenu
-                name={menu.name}
-                products={menu.products}
-                price={menu.price}
-                id={menu.id}
-                isActionButtons={true}
-                onUpdate={async () => onEdit(menu)}
-                onDelete={async () => onDelete(menu.id)}
-                isUpdate={isUpdate}
+      ) : data === null || data.length === 0 ? (
+          <NotFoundPage message={'Oops! Aun no hay ninguna opción de menu creada'}></NotFoundPage>
+        ) :
+        (
+          <>
+            <Row>
+              {data?.menus?.map((menu) => (
+                <Col key={menu.id} xs={12} md={6} lg={4}>
+                  <CardMenu
+                    name={menu.name}
+                    products={menu.products}
+                    price={menu.price}
+                    id={menu.id}
+                    isActionButtons={true}
+                    onUpdate={async () => onEdit(menu)}
+                    onDelete={async () => onDelete(menu.id)}
+                    isUpdate={isUpdate}
+                  />
+                </Col>
+              ))}
+            </Row>
+            <PaginationContainer>
+              <StyledPagination
+                count={totalPages}
+                variant="outlined"
+                shape="rounded"
+                size="large"
+                page={parseInt(page, 10)}
+                onChange={(e, page) => {
+                  navigate(`/app/menus?page=${page}`);
+                }}
               />
-            </Col>
-          ))}
-        </Row>
-      )}
-      <PaginationContainer>
-        <StyledPagination
-          count={totalPages}
-          variant="outlined"
-          shape="rounded"
-          size="large"
-          page={parseInt(page, 10)}
-          onChange={(e, page) => {
-            navigate(`/app/menus?page=${page}`);
-          }}
-        />
-      </PaginationContainer>
+            </PaginationContainer>
+          </>
+        )}
+
       <CreateOrUpdateMenu
         isOpen={visible}
         onCancel={onClose}
@@ -155,6 +162,7 @@ function Menus() {
         menu={menuEdit}
         setShowMessage={setShowMessage}
         isCloseModal={isCloseModal}
+        setIsCloseModal={setIsCloseModal}
       />
 
     </Layout>

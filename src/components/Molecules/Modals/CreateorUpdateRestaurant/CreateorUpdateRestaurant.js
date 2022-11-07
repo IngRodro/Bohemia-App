@@ -4,7 +4,7 @@ import { useAuth } from 'Context/AuthContext';
 import useMutation from 'hooks/useMutation';
 import { H2, ImagePreview } from './style';
 import { useEffect, useState } from 'react';
-import Select from '../../../Atoms/Select';
+import Select from 'components/Atoms/SelectMaterialUI';
 
 const AddRestaurantModal = ({
   isOpen,
@@ -18,7 +18,7 @@ const AddRestaurantModal = ({
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
-  const [municipal, setMunicipal] = useState('');
+  const [municipal, setMunicipal] = useState('Seleccione un municipio');
   const [imageSelected, setImageSelected] = useState(null);
   const [phone, setPhone] = useState('');
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
@@ -96,7 +96,10 @@ const AddRestaurantModal = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     if(!imageSelected){
-      alert("Debe seleccionar una imagen");
+      setShowMessage({
+        message: 'Debe seleccionar una imagen',
+        type: 'error',
+      });
       return;
     }
     const name = e.target.name.value;
@@ -142,14 +145,7 @@ const AddRestaurantModal = ({
   };
 
   const onchangeMunicipality = async (e) => {
-    setMunicipal(e.value);
-  };
-
-  const onChangePhone = (e) => {
-    const phone = e.target.value;
-    if (phone.length > 8) {
-      e.target.value = phone.substring(0, 8);
-    }
+    setMunicipal(e.target.value);
   };
 
   return (
@@ -179,14 +175,10 @@ const AddRestaurantModal = ({
           required
         />
         <Select
-          id={'municipality'}
-          required
-          type="text"
-          name="Municipality"
+          label="Municipio"
+          value={municipal}
           options={dataMunicipality}
-          placeholder="Municipality"
-          defaultValue={'Hola Mundo'}
-          onChange={(e) => onchangeMunicipality(e)}
+          onChange={onchangeMunicipality}
         />
         <Input
           name="direction"

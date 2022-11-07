@@ -5,13 +5,13 @@ import HeaderPage from '../../components/Molecules/HeaderPage';
 import Card from '../../components/Molecules/Cards/CardProducts';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Select from '../../components/Atoms/Select';
+import SelectMaterialUi from '../../components/Atoms/SelectMaterialUI';
 import { PaginationContainer, StyledPagination } from '../style';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
 
 function RestaurantsHome() {
   const [page, setPage] = useState(1);
-  const [municipality, setMunicipality] = useState('');
+  const [municipality, setMunicipality] = useState('Seleccione un municipio');
   const [totalPages, setTotalPages] = useState(0);
   const { data, loading, refresh } = useQuery(
     '/restaurants/',
@@ -37,7 +37,8 @@ function RestaurantsHome() {
       {value: "Tejutla", label: "Tejutla"}];
 
   const onchangeMunicipality = async (e) => {
-    setMunicipality(e.value);
+    setMunicipality(e.target.value);
+    setPage(1);
   };
   useEffect(() => {
     setTotalPages(data?.totalPages || 0);
@@ -49,14 +50,11 @@ function RestaurantsHome() {
         title="Restaurants"
         child={
           <>
-            <Select
-              id={'municipality'}
-              required
-              type="text"
-              name="Municipality"
+            <SelectMaterialUi
+              label="Municipio"
+              value={municipality}
               options={dataMunicipality}
-              placeholder="Municipality"
-              onChange={(e) => onchangeMunicipality(e)}
+              onChange={onchangeMunicipality}
             />
           </>
         }

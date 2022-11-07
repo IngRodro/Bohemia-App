@@ -8,6 +8,7 @@ import useModal from 'hooks/useModal';
 import { AddButton, Text, DeleteIcon, InputStyled } from './style';
 import { Add } from '@styled-icons/fluentui-system-filled/Add';
 import Swal from 'sweetalert2';
+import SelectMaterialUI from 'components/Atoms/SelectMaterialUI';
 
 const AddMenuOptionModal = ({
   isOpen,
@@ -22,7 +23,10 @@ const AddMenuOptionModal = ({
 }) => {
   const { visible, onToggle } = useModal();
   const [products, setProducts] = useState(menu?.products || []);
+  const [type, setType] = useState(menu?.type || 'Seleccione una opción');
   const { token } = useAuth();
+  const [price, setPrice] = useState(menu?.price || '');
+  const [allowAddProduct, setAllowAddProduct] = useState(false);
 
   const [createOrUpdateMenus, { loading: loadingAddOrUpdateMenu }] =
     useMutation(isUpdate ? `/menu/${menu?.id}` : '/menu', {
@@ -53,15 +57,31 @@ const AddMenuOptionModal = ({
     }
   }, [isUpdate, menu, isCloseModal]);
 
+  useEffect(() =>{
+    if((products.length !== 0 && type === 'Producto') || type === 'Seleccione una opción'){
+      setAllowAddProduct(false);
+    }else{
+      setAllowAddProduct(true);
+    }
+  }, [products, type]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    if(!price || !type || type === 'Seleccione una opción' || products.length === 0 || e.target.name.value === ''){
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe completar todos los campos',
+      });
+      return;
+    }
     const { errors } = await createOrUpdateMenus({
       variables: {
         name: e.target.name.value,
         products: products.map((p) => {
           return { product: p.id, quantity: parseInt(p.quantity, 10) };
         }),
-        price: parseFloat(e.target.price.value),
+        price: parseFloat(price),
         restaurant: idRestaurant,
         type: products.length > 1 ? 'combo' : 'product',
       },
@@ -87,15 +107,39 @@ const AddMenuOptionModal = ({
   };
 
   const onChangeQuantity = (e, product) => {
-    const { value } = e.target;
-    const newProducts = products.map((p) => {
-      if (p.id === product.id) {
-        return { ...p, quantity: value };
-      }
-      return p;
-    });
-    setProducts(newProducts);
+  const { value } = e.target;
+
+      setProducts(
+           products.map(p => {
+            if(p.id === product.id){
+              const element = document.getElementById(`quantity-${product.id}`);
+              element.value = value;
+              return {...p, quantity: value}
+            }
+            return p;
+          })
+      )
+
+
   };
+
+  const onChangePrice = (e) => {
+
+
+
+    const { value } = e.target;
+    const regexPrice = /^\d*\.?\d{0,2}$/;
+    setPrice((prevSate) => {
+      if (value === '' || regexPrice.test(value)) {
+        return value;
+      }
+      return prevSate;
+    });
+  };
+
+  const onChaneSelect = (e) => {
+    setType(e.target.value);
+  }
 
   return (
     <Modal
@@ -114,29 +158,49 @@ const AddMenuOptionModal = ({
         loading: loadingAddOrUpdateMenu,
       }}
     >
-      <form id="form-product" method="POST" onSubmit={onSubmit}>
+      <form id="form-menu" method="POST" onSubmit={onSubmit}>
         <Input
           name="name"
           placeholder="Name"
           type="text"
-          required
           defaultValue={menu?.name}
         />
         <Input
           name="price"
           placeholder="Price"
           type="text"
+          onChange={onChangePrice}
           defaultValue={menu?.price}
-          required
+          value={price}
         />
+        <SelectMaterialUI
+          name="type"
+          label="Type"
+          options={[
+            { value: 'Seleccione una opción', label: 'Seleccione una opción' },
+            { value: 'Producto', label: 'Producto' },
+            { value: 'Combo', label: 'Combo' },
+          ]}
+          value={type}
+          onChange={onChaneSelect}
+          >
+
+        </SelectMaterialUI>
         {products.length > 0 &&
           products.map((prod) => (
             <div key={menu ? menu.id + prod.id : prod.id}>
               <Text>{prod.name}</Text>
               <InputStyled
                 type={'number'}
+                min={1}
+                id={'quantity-' + prod.id}
                 placeholder={'quantity'}
                 defaultValue={prod.quantity}
+                onKeyPress={(e) => {
+                  if (!/[0-9]/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
                 onChange={(e) => onChangeQuantity(e, prod)}
               />
               <DeleteIcon
@@ -147,9 +211,11 @@ const AddMenuOptionModal = ({
             </div>
           ))}
       </form>
-      <AddButton onClick={() => onAddProduct()}>
-        <Add size={24} />
-      </AddButton>
+      { allowAddProduct && (
+        <AddButton onClick={() => onAddProduct()}>
+          <Add size={24} />
+        </AddButton>
+      )}
       <ShowProductsModal
         isOpen={visible}
         onCancel={onToggle}

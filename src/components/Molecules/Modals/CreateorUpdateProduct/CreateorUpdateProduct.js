@@ -16,6 +16,7 @@ const AddProductModal = ({
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
+  const [imageSelected, setImageSelected] = useState(null);
 
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
     useMutation(isUpdate ? `/products/${product?.id}` : '/products', {
@@ -33,6 +34,7 @@ const AddProductModal = ({
   useEffect(() => {
     if (isUpdate) {
       setUrlImage(product?.image?.secure_url);
+      setImageSelected(true);
     } else {
       setUrlImage(
         'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
@@ -41,6 +43,10 @@ const AddProductModal = ({
   }, [isUpdate, product]);
 
   const onSubmit = async (e) => {
+    if(!imageSelected) {
+      alert('Debe seleccionar una imagen');
+      return;
+    }
     e.preventDefault();
     const name = e.target.name.value;
     const image = e.target.image.files[0];
@@ -59,6 +65,7 @@ const AddProductModal = ({
     const image = e.target.files[0];
     const imagePreview = URL.createObjectURL(image);
     setUrlImage(imagePreview);
+    setImageSelected(true);
   };
 
   return (
