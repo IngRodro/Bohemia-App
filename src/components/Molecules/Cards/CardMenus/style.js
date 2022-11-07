@@ -22,10 +22,10 @@ export const ActionWrapper = styled.div`
 
 export const StyleImage = styled.img`
   border-radius: 12px;
-  width: ${({ $width }) => ($width ? $width : 45)}%;
+  width: ${({ $width }) => ($width ? $width : 35)}%;
   margin: ${({ $margin }) => ($margin ? $margin : '10px auto')};
   min-width: 40%;
-  height: 200px;
+  height: ${({ $height }) => $height};
   object-fit: cover;
 `;
 

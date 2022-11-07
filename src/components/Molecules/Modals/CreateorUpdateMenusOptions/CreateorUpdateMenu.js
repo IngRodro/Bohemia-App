@@ -24,6 +24,7 @@ const AddMenuOptionModal = ({
   const { visible, onToggle } = useModal();
   const [products, setProducts] = useState(menu?.products || []);
   const [type, setType] = useState(menu?.type || 'Seleccione una opción');
+  const [onlyRead, setOnlyRead] = useState(false);
   const { token } = useAuth();
   const [price, setPrice] = useState(menu?.price || '');
   const [allowAddProduct, setAllowAddProduct] = useState(false);
@@ -65,6 +66,14 @@ const AddMenuOptionModal = ({
     }
   }, [products, type]);
 
+  useEffect(() => {
+    if(products.length > 1 && type === 'Combo') {
+      setOnlyRead(true);
+    }else{
+      setOnlyRead(false);
+    }
+  },[products, type]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     if(!price || !type || type === 'Seleccione una opción' || products.length === 0 || e.target.name.value === ''){
@@ -83,7 +92,7 @@ const AddMenuOptionModal = ({
         }),
         price: parseFloat(price),
         restaurant: idRestaurant,
-        type: products.length > 1 ? 'combo' : 'product',
+        type: type,
       },
     });
     if (errors) {
@@ -101,6 +110,13 @@ const AddMenuOptionModal = ({
       }
     }
   };
+
+  useEffect(() => {
+    if (isUpdate) {
+      setPrice(menu?.price);
+      setType(menu?.type);
+    }
+  }, [isUpdate, menu]);
 
   const onAddProduct = () => {
     onToggle();
@@ -175,6 +191,7 @@ const AddMenuOptionModal = ({
         <SelectMaterialUI
           name="type"
           label="Type"
+          readOnly={onlyRead}
           options={[
             { value: 'Seleccione una opción', label: 'Seleccione una opción' },
             { value: 'Producto', label: 'Producto' },

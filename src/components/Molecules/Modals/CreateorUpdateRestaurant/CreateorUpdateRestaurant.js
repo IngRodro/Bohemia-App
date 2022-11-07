@@ -14,13 +14,14 @@ const AddRestaurantModal = ({
   restaurant = null,
   setShowMessage,
 }) => {
+  console.log('restaurant', restaurant);
   const { token } = useAuth();
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
-  const [municipal, setMunicipal] = useState('Seleccione un municipio');
+  const [municipal, setMunicipal] = useState(restaurant?.municipality || 'Seleccione un municipio');
   const [imageSelected, setImageSelected] = useState(null);
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState(restaurant?.phone || '');
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
     useMutation(isUpdate ? `/restaurants/${restaurant?.id}` : '/restaurants', {
       method: isUpdate ? 'put' : 'post',
@@ -49,6 +50,8 @@ const AddRestaurantModal = ({
 
   useEffect(() => {
     if (isUpdate) {
+      setPhone(restaurant?.phone);
+      setMunicipal(restaurant?.municipality);
       setUrlImage(restaurant?.image?.secure_url);
       setImageSelected(true);
     } else {
@@ -131,7 +134,8 @@ const AddRestaurantModal = ({
         setShowMessage('add');
       }
     }
-
+    setMunicipal('Seleccione un municipio');
+    setPhone('');
     setUrlImage(
       'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
     );
@@ -153,6 +157,8 @@ const AddRestaurantModal = ({
       width={400}
       isOpen={isOpen}
       onCancel={() => {
+        setPhone('');
+        setMunicipal('Seleccione un municipio');
         onCancel();
         setUrlImage(
           'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'

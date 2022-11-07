@@ -26,8 +26,9 @@ const Toast = Swal.mixin({
 });
 
 function Menus() {
-  const {id, name, page = 1} = useParams();
-  const {data, loading, refresh} = useQuery(`/menu/${id}`);
+  const {id, name} = useParams();
+  const [page, setPage] = useState(1);
+  const {data, loading, refresh} = useQuery(`/menu/${id}` ,page, '', true);
   const {token} = useAuth();
   const [isCloseModal, setIsCloseModal] = useState(true);
   const navigate = useNavigate();
@@ -146,7 +147,8 @@ function Menus() {
                 size="large"
                 page={parseInt(page, 10)}
                 onChange={(e, page) => {
-                  navigate(`/app/menus?page=${page}`);
+                  navigate(`/app/menus/${id}/${name}?page=${page}`);
+                  setPage(page);
                 }}
               />
             </PaginationContainer>

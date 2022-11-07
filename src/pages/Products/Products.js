@@ -1,5 +1,5 @@
 import Layout from 'components/Organisms/Layout';
-import CardRestaurants from 'components/Molecules/Cards/CardProducts';
+import CardRestaurants from 'components/Molecules/Cards/Card';
 import { Col, Row } from 'react-grid-system';
 import useQuery from 'hooks/useQuery';
 import HeaderPage from 'components/Molecules/HeaderPage';
@@ -31,7 +31,7 @@ function Products() {
   const { visible, onToggle } = useModal();
   const { visible: isUpdate, onHidden, onVisible } = useModal();
   const { token } = useAuth();
-  const { data, loading, refresh, errors } = useQuery(`/products`, page, '', true);
+  const { data, loading, refresh } = useQuery(`/products`, page, '', true);
   const [DeleteProduct] = useMutation(`/products`, {
     method: 'delete',
     refresh: async () => {
@@ -67,6 +67,9 @@ function Products() {
       if (result.value) {
         await DeleteProduct({ idDelete: id });
         await refresh();
+        if((data.length === 0 || data.length === null || data.length === undefined) && page > 1) {
+          setPage((prev) => prev - 1);
+        }
         await Toast.fire({
           icon: 'success',
           title: 'Products deleted',
@@ -77,8 +80,10 @@ function Products() {
   };
 
   useEffect(() => {
+    console.log(data);
     setTotalPages(data?.totalPages);
-  }, [data?.totalPages]);
+  }, [data]);
+
 
   return (
     <Layout>

@@ -11,6 +11,7 @@ export default function SelectLabels({
   options,
   error,
   helperText,
+  readOnly,
   ...props
                                      }) {
   return (
@@ -22,6 +23,7 @@ export default function SelectLabels({
         value={value}
         label={label}
         onChange={onChange}
+        inputProps={{readOnly:  readOnly}}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

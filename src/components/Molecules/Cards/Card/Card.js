@@ -22,7 +22,7 @@ const CardRestaurant = ({
   return (
     <StyleWrapper onClick={action}>
       <StyleImage loading="lazy" src={image} />
-      <Title>{name}</Title>
+      <Title size={30}>{name}</Title>
       {department && (
         <Text size={22}>
           <strong style={{ fontSize: '22px' }}>Department:</strong> {department}

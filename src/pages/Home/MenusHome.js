@@ -18,7 +18,7 @@ function MenusHome() {
     '',
     false
   );
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(data?.totalPages);
 
   useEffect(() => {
     setTotalPages(data?.totalPages);

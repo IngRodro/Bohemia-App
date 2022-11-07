@@ -2,7 +2,7 @@ import Layout from '../../components/Organisms/Layout';
 import {Col, Row} from 'react-grid-system';
 import useQuery from '../../hooks/useQuery';
 import HeaderPage from '../../components/Molecules/HeaderPage';
-import Card from '../../components/Molecules/Cards/CardProducts';
+import Card from '../../components/Molecules/Cards/Card';
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {useEffect, useState} from 'react';

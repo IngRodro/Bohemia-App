@@ -23,6 +23,6 @@ export const ActionWrapper = styled.div`
 export const StyleImage = styled.img`
   border-radius: 12px;
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 `;

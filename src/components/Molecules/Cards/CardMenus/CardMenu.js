@@ -27,6 +27,7 @@ const CardMenu = ({
           loading="lazy"
           src={products[0].product.image.secure_url}
           $width={100}
+          $height={'300px'}
         />
       )}
       {!isImage && (
@@ -34,6 +35,8 @@ const CardMenu = ({
           {products.map(({ product }) => {
             return (
               <StyleImage
+                width={100}
+                height={products.length <= 2 ? '300px' : '130px'}
                 key={product.id + id}
                 loading="lazy"
                 src={product.image.secure_url}
@@ -42,7 +45,7 @@ const CardMenu = ({
           })}
         </ImagesWrapper>
       )}
-      <Title>{name}</Title>
+      <Title size={30}>{name}</Title>
       <Text size={20}>Detalles:</Text>
       {products.map(
         ({ product, quantity }) => {

@@ -1,5 +1,5 @@
 import Modal from 'components/Atoms/EspecialModal';
-import CardProducts from 'components/Molecules/Cards/CardProducts';
+import CardProducts from 'components/Molecules/Cards/Card';
 import { Col, Row } from 'react-grid-system';
 import useQuery from 'hooks/useQuery';
 import CreateorUpdateProduct from '../CreateorUpdateProduct/CreateorUpdateProduct';
@@ -9,7 +9,7 @@ import {useState} from 'react';
 const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
   const { data, loading, refresh } = useQuery(`/products`);
   const { visible: visibleProduct, onToggle: onToggleProduct } = useModal();
-  const { onHidden, onVisible } = useModal();
+  const { onHidden } = useModal();
   const [isCloseModal, setIsCloseModal] = useState(true);
 
   const onCardClick = ({ id, name }) => {
