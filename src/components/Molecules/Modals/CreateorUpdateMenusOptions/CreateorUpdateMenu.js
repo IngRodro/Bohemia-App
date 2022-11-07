@@ -108,7 +108,6 @@ const AddMenuOptionModal = ({
 
   const onChangeQuantity = (e, product) => {
   const { value } = e.target;
-
       setProducts(
            products.map(p => {
             if(p.id === product.id){
@@ -124,13 +123,13 @@ const AddMenuOptionModal = ({
   };
 
   const onChangePrice = (e) => {
-
-
-
     const { value } = e.target;
     const regexPrice = /^\d*\.?\d{0,2}$/;
     setPrice((prevSate) => {
       if (value === '' || regexPrice.test(value)) {
+        if(value === '.'){
+          return '0.';
+        }
         return value;
       }
       return prevSate;
@@ -190,6 +189,13 @@ const AddMenuOptionModal = ({
           products.map((prod) => (
             <div key={menu ? menu.id + prod.id : prod.id}>
               <Text>{prod.name}</Text>
+              <div style={
+                {
+                  display: 'flex',
+                  alignItems: 'center'
+                }
+              }>
+                <Text>Cantidad: </Text>
               <InputStyled
                 type={'number'}
                 min={1}
@@ -208,6 +214,7 @@ const AddMenuOptionModal = ({
                   setProducts(products.filter((p) => p.id !== prod.id))
                 }
               />
+              </div>
             </div>
           ))}
       </form>

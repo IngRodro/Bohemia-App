@@ -23,6 +23,6 @@ export const DeleteIcon = styled(Delete)`
 `;
 
 export const InputStyled = styled(Input)`
-  width: 85%;
-  margin: 10px 0;
+  width: 55%;
+  margin: 10px;
 `;
