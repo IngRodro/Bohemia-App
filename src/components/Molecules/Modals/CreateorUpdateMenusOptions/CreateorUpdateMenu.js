@@ -158,15 +158,16 @@ const AddMenuOptionModal = ({
 
   return (
     <Modal
-      width={400}
+      width={425}
       isOpen={isOpen}
       onCancel={() => {
+        setType('Seleccione una opción');
         setProducts([]);
         onCancel();
         setIsCloseModal(true);
       }}
-      title={isUpdate ? 'Edit Menu' : 'Add Menu'}
-      okText={isUpdate ? 'Edit' : 'Save'}
+      title={isUpdate ? 'Actualizar opción del menú' : 'Agregar opción del menú'}
+      okText={isUpdate ? 'Actualizar' : 'Guardar'}
       okProps={{
         type: 'submit',
         form: 'form-menu',
@@ -190,7 +191,7 @@ const AddMenuOptionModal = ({
         />
         <SelectMaterialUI
           name="type"
-          label="Type"
+          label="Tipo"
           readOnly={onlyRead}
           options={[
             { value: 'Seleccione una opción', label: 'Seleccione una opción' },

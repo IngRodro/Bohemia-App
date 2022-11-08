@@ -15,7 +15,6 @@ const AddRestaurantModal = ({
                               restaurant = null,
                               setShowMessage,
                             }) => {
-  console.log('restaurant', restaurant);
   const {token} = useAuth();
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
@@ -198,8 +197,8 @@ const AddRestaurantModal = ({
           'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
         );
       }}
-      title={isUpdate ? 'Edit Restaurants' : 'Add Restaurants'}
-      okText={isUpdate ? 'Edit' : 'Save'}
+      title={isUpdate ? 'Actualizar Restaurante' : 'Agregar Restaurante'}
+      okText={isUpdate ? 'Actualizar' : 'Guardar'}
       okProps={{
         type: 'submit',
         form: 'form-restaurant',

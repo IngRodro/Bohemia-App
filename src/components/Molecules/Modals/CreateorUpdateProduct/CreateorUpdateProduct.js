@@ -78,8 +78,8 @@ const AddProductModal = ({
           'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
         );
       }}
-      title={isUpdate ? 'Edit Products' : 'Add Products'}
-      okText={isUpdate ? 'Edit' : 'Save'}
+      title={isUpdate ? 'Actualizar Producto' : 'Agregar Producto'}
+      okText={isUpdate ? 'Actualizar' : 'Guardar'}
       okProps={{
         type: 'submit',
         form: 'form-product',
@@ -103,7 +103,7 @@ const AddProductModal = ({
           accept="image/*"
         />
       </form>
-      <H2>Image</H2>
+      <H2>Seleccione una imagen</H2>
       <ImagePreview
         src={urlImage}
         alt={product?.name}

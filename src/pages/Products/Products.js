@@ -80,7 +80,6 @@ function Products() {
   };
 
   useEffect(() => {
-    console.log(data);
     setTotalPages(data?.totalPages);
   }, [data]);
 

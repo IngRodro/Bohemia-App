@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import SelectMaterialUi from '../../components/Atoms/SelectMaterialUI';
 import { PaginationContainer, StyledPagination } from '../style';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
+import Text from '../../components/Atoms/Text';
 
 function RestaurantsHome() {
   const [page, setPage] = useState(1);
@@ -48,15 +49,27 @@ function RestaurantsHome() {
     <Layout>
       <HeaderPage
         title="Restaurants"
-        child={
-          <>
-            <SelectMaterialUi
-              label="Municipio"
-              value={municipality}
-              options={dataMunicipality}
-              onChange={onchangeMunicipality}
-            />
-          </>
+        child={<>
+          <Text size={18}>Filtrar por municipio:</Text>
+          <div style={
+             {
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '300px',
+                maxWidth: '400px',
+             }
+          }>
+            <>
+              <SelectMaterialUi
+                label="Municipio"
+                value={municipality}
+                options={dataMunicipality}
+                onChange={onchangeMunicipality}
+              />
+            </>
+          </div>
+        </>
         }
         onRefresh={refresh}
       />
