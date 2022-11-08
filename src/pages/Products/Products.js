@@ -65,16 +65,25 @@ function Products() {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.value) {
-        await DeleteProduct({ idDelete: id });
-        await refresh();
-        if((data.length === 0 || data.length === null || data.length === undefined) && page > 1) {
-          setPage((prev) => prev - 1);
+        const { errors } = await DeleteProduct({ idDelete: id });
+        if(errors?.response?.data?.message === "The product is being used in a menu option, you can't delete it"
+        ){
+          await Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se puede eliminar el producto porque esta siendo usado en una opcion de menu',
+          });
+        }else{
+          await refresh();
+          if((data.length === 0 || data.length === null || data.length === undefined) && page > 1) {
+            setPage((prev) => prev - 1);
+          }
+          await Toast.fire({
+            icon: 'success',
+            title: 'Products deleted',
+            position: 'bottom-end',
+          });
         }
-        await Toast.fire({
-          icon: 'success',
-          title: 'Products deleted',
-          position: 'bottom-end',
-        });
       }
     });
   };
