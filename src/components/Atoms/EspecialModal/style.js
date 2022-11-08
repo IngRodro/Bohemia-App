@@ -54,7 +54,7 @@ export const customStyles = {
 
 export const ScrollContainer = styled.div`
   overflow-y: scroll;
-  max-height: 400px;
+  max-height: 600px;
   scroll-behavior: smooth;
   padding: 0 20px;
 `;

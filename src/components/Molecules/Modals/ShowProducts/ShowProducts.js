@@ -2,12 +2,15 @@ import Modal from 'components/Atoms/EspecialModal';
 import CardProducts from 'components/Molecules/Cards/Card';
 import { Col, Row } from 'react-grid-system';
 import useQuery from 'hooks/useQuery';
-import CreateorUpdateProduct from '../CreateorUpdateProduct/CreateorUpdateProduct';
+import CreateOrUpdateProduct from '../CreateorUpdateProduct/CreateorUpdateProduct';
 import useModal from '../../../../hooks/useModal';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {PaginationContainer, StyledPagination} from '../../../../pages/style';
 
 const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
-  const { data, loading, refresh } = useQuery(`/products`);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
+  const { data, loading, refresh } = useQuery(`/products`, page);
   const { visible: visibleProduct, onToggle: onToggleProduct } = useModal();
   const { onHidden } = useModal();
   const [isCloseModal, setIsCloseModal] = useState(true);
@@ -34,6 +37,12 @@ const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
     setIsCloseModal(false);
     onToggleProduct();
   };
+
+  useEffect(() => {
+    if (data) {
+      setTotalPages(data.totalPages);
+    }
+  }, [data]);
 
   return (<>
     <Modal
@@ -69,8 +78,20 @@ const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
           ))}
         </Row>
       )}
+      <PaginationContainer>
+        <StyledPagination
+          count={totalPages}
+          variant="outlined"
+          shape="rounded"
+          size="large"
+          page={page}
+          onChange={(e, page) => {
+            setPage(page);
+          }}
+        />
+      </PaginationContainer>
     </Modal>
-      <CreateorUpdateProduct
+      <CreateOrUpdateProduct
         isOpen={visibleProduct}
         onRefresh={refresh}
         onCancel={onClose}
