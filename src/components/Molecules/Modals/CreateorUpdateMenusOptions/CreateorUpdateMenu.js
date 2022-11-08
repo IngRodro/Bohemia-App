@@ -102,6 +102,8 @@ const AddMenuOptionModal = ({
         text: 'Error al crear o actualizar la opción del menú',
       });
     } else {
+      setPrice('');
+      setType('Seleccione una opción');
       if(isUpdate){
         setShowMessage('edit');
       }
@@ -162,6 +164,7 @@ const AddMenuOptionModal = ({
       isOpen={isOpen}
       onCancel={() => {
         setType('Seleccione una opción');
+        setPrice('')
         setProducts([]);
         onCancel();
         setIsCloseModal(true);

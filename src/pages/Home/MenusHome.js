@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { PaginationContainer, StyledPagination } from '../style';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
+import Skeleton from '@mui/material/Skeleton';
+import * as React from 'react';
 
 function MenusHome() {
   const { id, name } = useParams();
@@ -29,7 +31,44 @@ function MenusHome() {
       <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} />
       {loading ? (
         <p>
-          <b>Loading...</b>
+          <Row>
+            <Col xs={12} md={6} lg={4}>
+              <Skeleton variant="rectangular" width={"100%"} height={300} />
+              <Skeleton height={20}/>
+              <Skeleton height={20}/>
+              <Skeleton width={"100%"} height={40} />
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Skeleton variant="rectangular" width={"100%"} height={300} />
+              <Skeleton height={20}/>
+              <Skeleton height={20}/>
+              <Skeleton width={"100%"} height={40} />
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Skeleton variant="rectangular" width={"100%"} height={300} />
+              <Skeleton height={20}/>
+              <Skeleton height={20}/>
+              <Skeleton width={"100%"} height={40} />
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Skeleton variant="rectangular" width={"100%"} height={300} />
+              <Skeleton height={20}/>
+              <Skeleton height={20}/>
+              <Skeleton width={"100%"} height={40} />
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Skeleton variant="rectangular" width={"100%"} height={300} />
+              <Skeleton height={20}/>
+              <Skeleton height={20}/>
+              <Skeleton width={"100%"} height={40} />
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Skeleton variant="rectangular" width={"100%"} height={300} />
+              <Skeleton height={20}/>
+              <Skeleton height={20}/>
+              <Skeleton width={"100%"} height={40} />
+            </Col>
+          </Row>
         </p>
       ) : data===null || data.length===0 ? (
         <NotFoundPage message={'Oops! El restaurante aun no tiene registrado un menu'}></NotFoundPage>

@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 import useMutation from '../../hooks/useMutation';
 import {useAuth} from 'Context/AuthContext';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
+import Skeleton from '@mui/material/Skeleton';
+import * as React from 'react';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -56,16 +58,19 @@ function Menus() {
 
   const onDelete = async (id) => {
     await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this Menu Option!',
+      title: '¿Estas seguro?',
+      text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it',
+      confirmButtonText: 'Si, ¡bórralo!',
+      cancelButtonText: 'No, ¡cancelar!',
       reverseButtons: true,
     }).then(async (result) => {
       if (result.value) {
         await DeleteProduct({idDelete: id});
+        if((data.length === 0 || data.length === null || data.length === undefined) && page > 1) {
+          setPage((prev) => prev - 1);
+        }
         await refresh();
         await Toast.fire({
           icon: 'success',
@@ -115,9 +120,44 @@ function Menus() {
     <Layout>
       <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} onAdd={onAdd}/>
       {loading ? (
-        <p>
-          <b>Loading...</b>
-        </p>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+        </Row>
       ) : data === null || data.length === 0 ? (
           <NotFoundPage message={'Oops! Aun no hay ninguna opción de menu creada'}></NotFoundPage>
         ) :

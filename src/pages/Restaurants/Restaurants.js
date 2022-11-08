@@ -9,10 +9,10 @@ import {useEffect, useState} from 'react';
 import useModal from '../../hooks/useModal';
 import {useAuth} from '../../Context/AuthContext';
 import useMutation from '../../hooks/useMutation';
-import {PaginationContainer, StyledPagination} from '../style';
-import CreateorUpdateRestaurant
+import CreateOrUpdateRestaurant
   from '../../components/Molecules/Modals/CreateorUpdateRestaurant/CreateorUpdateRestaurant';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
+import Skeleton from '@mui/material/Skeleton';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -28,8 +28,6 @@ const Toast = Swal.mixin({
 
 function Restaurants() {
   const [restaurantEdit, setRestaurantEdit] = useState(null);
-  const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
   const {visible, onToggle} = useModal();
   const {visible: isUpdate, onHidden, onVisible} = useModal();
   const {token} = useAuth();
@@ -60,10 +58,6 @@ function Restaurants() {
     setRestaurantEdit(null);
     onToggle();
   };
-
-  useEffect(() => {
-    setTotalPages(data?.totalPages);
-  }, [data?.totalPages]);
 
   useEffect(() => {
     if (showMessage) {
@@ -121,14 +115,49 @@ function Restaurants() {
   return (
     <Layout>
       <HeaderPage
-        title="Restaurants"
+        title="Restaurantes"
         onRefresh={refresh}
         onAdd={onToggle}
       />
       {loading ? (
-        <p>
-          <b>Loading...</b>
-        </p>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+        </Row>
       ) : data === null || data.length === 0 ? (
         <NotFoundPage message={'Oops! Aun no has registrado ningun restuarante'}></NotFoundPage>
       ) : (
@@ -147,21 +176,9 @@ function Restaurants() {
               </Col>
             ))}
           </Row>
-          <PaginationContainer>
-            <StyledPagination
-              count={totalPages}
-              variant="outlined"
-              shape="rounded"
-              size="large"
-              page={page}
-              onChange={(e, page) => {
-                setPage(page);
-              }}
-            />
-          </PaginationContainer>
         </>
       )}
-      <CreateorUpdateRestaurant
+      <CreateOrUpdateRestaurant
         restaurant={restaurantEdit}
         isOpen={visible}
         isUpdate={isUpdate}g

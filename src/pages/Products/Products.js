@@ -11,6 +11,8 @@ import CreateorUpdateProduct from 'components/Molecules/Modals/CreateorUpdatePro
 import useModal from 'hooks/useModal';
 import useMutation from '../../hooks/useMutation';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
+import Skeleton from '@mui/material/Skeleton';
+import * as React from 'react';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -56,12 +58,12 @@ function Products() {
 
   const onDelete = async (id) => {
     await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this product!',
+      title: '¿Estas seguro?',
+      text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it',
+      confirmButtonText: 'Si, ¡bórralo!',
+      cancelButtonText: 'No, ¡cancelar!',
       reverseButtons: true,
     }).then(async (result) => {
       if (result.value) {
@@ -97,9 +99,44 @@ function Products() {
     <Layout>
       <HeaderPage title="Products" onRefresh={refresh} onAdd={onToggle} />
       {loading ? (
-        <p>
-          <b>Loading...</b>
-        </p>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+        </Row>
       ) : data === null || data.length===0 ? (
         <NotFoundPage message={'Oops! Aun no has registrado ningun producto'} />
         ) : (

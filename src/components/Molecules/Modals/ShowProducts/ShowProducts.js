@@ -6,6 +6,8 @@ import CreateOrUpdateProduct from '../CreateorUpdateProduct/CreateorUpdateProduc
 import useModal from '../../../../hooks/useModal';
 import {useEffect, useState} from 'react';
 import {PaginationContainer, StyledPagination} from '../../../../pages/style';
+import Skeleton from '@mui/material/Skeleton';
+import * as React from 'react';
 
 const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
   const [totalPages, setTotalPages] = useState(0);
@@ -62,9 +64,44 @@ const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
       }
     >
       {loading ? (
-        <p>
-          <b>Loading...</b>
-        </p>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+        </Row>
       ) : (
         <Row>
           {data?.products?.map(({ id, name, image }) => (

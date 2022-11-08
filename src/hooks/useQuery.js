@@ -33,6 +33,7 @@ const useQuery = (
       setLoading(false);
     } catch (err) {
       setErrors(err);
+      setData(null);
       setLoading(false);
       throw new Error(err);
     }

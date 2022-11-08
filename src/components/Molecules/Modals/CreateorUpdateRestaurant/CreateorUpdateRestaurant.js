@@ -20,7 +20,7 @@ const AddRestaurantModal = ({
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
   const [municipal, setMunicipal] = useState(restaurant?.municipality || 'Seleccione un municipio');
-  const [imageSelected, setImageSelected] = useState(null);
+  const [imageSelected, setImageSelected] = useState(false);
   const [phone, setPhone] = useState(restaurant?.phone || '');
   const [createOrUpdateProduct, {loading: loadingAddOrUpdateProduct}] =
     useMutation(isUpdate ? `/restaurants/${restaurant?.id}` : '/restaurants', {
@@ -172,6 +172,7 @@ const AddRestaurantModal = ({
     setUrlImage(
       'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
     );
+    setImageSelected(false);
   };
 
   const ChangeImage = (e) => {
@@ -192,6 +193,7 @@ const AddRestaurantModal = ({
       onCancel={() => {
         setPhone('');
         setMunicipal('Seleccione un municipio');
+        setImageSelected(false);
         onCancel();
         setUrlImage(
           'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'

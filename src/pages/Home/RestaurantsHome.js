@@ -9,10 +9,14 @@ import SelectMaterialUi from '../../components/Atoms/SelectMaterialUI';
 import { PaginationContainer, StyledPagination } from '../style';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
 import Text from '../../components/Atoms/Text';
+import Skeleton from '@mui/material/Skeleton';
+import * as React from 'react';
 
 function RestaurantsHome() {
   const [page, setPage] = useState(1);
-  const [municipality, setMunicipality] = useState('Seleccione un municipio');
+  const [municipality, setMunicipality] = useState(
+    localStorage.getItem('municipality') || 'Seleccione un municipio'
+  );
   const [totalPages, setTotalPages] = useState(0);
   const { data, loading, refresh } = useQuery(
     '/restaurants/',
@@ -40,7 +44,9 @@ function RestaurantsHome() {
   const onchangeMunicipality = async (e) => {
     setMunicipality(e.target.value);
     setPage(1);
+    localStorage.setItem('municipality', e.target.value);
   };
+
   useEffect(() => {
     setTotalPages(data?.totalPages || 0);
   }, [data?.totalPages]);
@@ -48,7 +54,7 @@ function RestaurantsHome() {
   return (
     <Layout>
       <HeaderPage
-        title="Restaurants"
+        title="Restaurantes"
         child={<>
           <Text size={18}>Filtrar por municipio:</Text>
           <div style={
@@ -74,9 +80,44 @@ function RestaurantsHome() {
         onRefresh={refresh}
       />
       {loading ? (
-        <p>
-          <b>Loading...</b>
-        </p>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" width={"100%"} height={300} />
+            <Skeleton height={20}/>
+            <Skeleton height={20}/>
+            <Skeleton width={"100%"} height={40} />
+          </Col>
+        </Row>
       ) : data === null ? (
         <NotFoundPage message={'Oops! Aun no se han registrado restaurantes para este lugar'}></NotFoundPage>
       ) : (<>

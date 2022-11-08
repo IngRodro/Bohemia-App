@@ -4,6 +4,7 @@ import { useAuth } from 'Context/AuthContext';
 import useMutation from 'hooks/useMutation';
 import { H2, ImagePreview } from './style';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const AddProductModal = ({
   isOpen,
@@ -16,8 +17,7 @@ const AddProductModal = ({
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
-  const [imageSelected, setImageSelected] = useState(null);
-
+  const [imageSelected, setImageSelected] = useState(false);
   const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
     useMutation(isUpdate ? `/products/${product?.id}` : '/products', {
       method: isUpdate ? 'put' : 'post', // post = create, put = update
@@ -43,11 +43,23 @@ const AddProductModal = ({
   }, [isUpdate, product]);
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     if(!imageSelected) {
-      alert('Debe seleccionar una imagen');
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe seleccionar una imagen',
+      });
       return;
     }
-    e.preventDefault();
+    if(!e.target.name.value) {
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe ingresar un nombre',
+      });
+      return;
+    }
     const name = e.target.name.value;
     const image = e.target.image.files[0];
     let bodyFormData = new FormData();
@@ -59,6 +71,7 @@ const AddProductModal = ({
     setUrlImage(
       'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
     );
+    setImageSelected(false);
   };
 
   const ChangeImage = (e) => {
@@ -73,6 +86,7 @@ const AddProductModal = ({
       width={400}
       isOpen={isOpen}
       onCancel={() => {
+        setImageSelected(false);
         onCancel();
         setUrlImage(
           'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
@@ -92,7 +106,6 @@ const AddProductModal = ({
           placeholder="Nombre"
           type="text"
           defaultValue={product?.name}
-          required
         />
         <Input
           display="none"
