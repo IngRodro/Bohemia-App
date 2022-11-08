@@ -21,7 +21,7 @@ const Modal = ({
   cancelProps = {
     onClick: onCancel,
   },
-  width = 350,
+  width = 450,
   contentStyle = customStyles.content,
   closeButton = true,
   ...restProps

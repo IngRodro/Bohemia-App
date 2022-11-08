@@ -58,10 +58,10 @@ const SignInForm = () => {
   return (
     <BoxContainer $padding={70}>
       <FormContainer onSubmit={handleSubmit}>
-        <Input type="text" placeholder="Username" onChange={onChangeUserName} />
+        <Input type="text" placeholder="Nombre de usuario" onChange={onChangeUserName} />
         <Input
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
           onChange={onChangePassword}
         />
         <SubmitButton type="submit">Iniciar sesión</SubmitButton>

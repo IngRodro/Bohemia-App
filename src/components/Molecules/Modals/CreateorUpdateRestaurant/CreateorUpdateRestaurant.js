@@ -1,28 +1,29 @@
 import Modal from 'components/Atoms/Modal';
 import Input from 'components/Atoms/Input';
-import { useAuth } from 'Context/AuthContext';
+import {useAuth} from 'Context/AuthContext';
 import useMutation from 'hooks/useMutation';
-import { H2, ImagePreview } from './style';
-import { useEffect, useState } from 'react';
+import {H2, ImagePreview, InputStyled} from './style';
+import {useEffect, useState} from 'react';
 import Select from 'components/Atoms/SelectMaterialUI';
+import {Text} from '../CreateorUpdateMenusOptions/style';
 
 const AddRestaurantModal = ({
-  isOpen,
-  onCancel,
-  onRefresh,
-  isUpdate = false,
-  restaurant = null,
-  setShowMessage,
-}) => {
+                              isOpen,
+                              onCancel,
+                              onRefresh,
+                              isUpdate = false,
+                              restaurant = null,
+                              setShowMessage,
+                            }) => {
   console.log('restaurant', restaurant);
-  const { token } = useAuth();
+  const {token} = useAuth();
   const [urlImage, setUrlImage] = useState(
     'https://res.cloudinary.com/project-tpis/image/upload/v1654393909/assets/select-image-260nw-520051081_gzcreb.png'
   );
   const [municipal, setMunicipal] = useState(restaurant?.municipality || 'Seleccione un municipio');
   const [imageSelected, setImageSelected] = useState(null);
   const [phone, setPhone] = useState(restaurant?.phone || '');
-  const [createOrUpdateProduct, { loading: loadingAddOrUpdateProduct }] =
+  const [createOrUpdateProduct, {loading: loadingAddOrUpdateProduct}] =
     useMutation(isUpdate ? `/restaurants/${restaurant?.id}` : '/restaurants', {
       method: isUpdate ? 'put' : 'post',
       refresh: async () => {
@@ -35,17 +36,50 @@ const AddRestaurantModal = ({
       },
     });
 
-  const dataMunicipality = [{value : "Seleccione un municipio", label: "Seleccione un municipio"}, {value: "Agua Caliente", label: "Agua Caliente"},
-    {value: "Arcatao", label: "Arcatao"}, {value: "Azacualpa", label: "Azacualpa"},{value: "Chalatenango", label: "Chalatenango"},
-    {value: "Citalá", label: "Citalá"}, {value: "Comalapa", label: "Comalapa"}, {value: "Concepción Quezaltepeque", label: "Concepción Quezaltepeque"},
-    {value: "Dulce Nombre de María", label: "Dulce Nombre de María"}, {value: "El Carrizal", label: "El Carrizal"}, {value: "El Paraíso", label: "El Paraíso"},
-    {value: "La Laguna", label: "La Laguna"}, {value: "La Palma", label: "La Palma"}, {value: "La Reina", label: "La Reina"}, {value: "Las Vueltas", label: "Las Vueltas"},
-    {value: "Nombre de Jesús", label: "Nombre de Jesús"}, {value: "Nueva Concepción", label: "Nueva Concepción"}, {value: "Nueva Trinidad", label: "Nueva Trinidad"},
-    {value: "Ojos de Agua", label: "Ojos de Agua"}, {value: "Potonico", label: "Potonico"}, {value: "San Antonio de la Cruz", label: "San Antonio de la Cruz"},
-    {value: "San Antonio Los Ranchos", label: "San Antonio Los Ranchos"}, {value: "San Fernando", label: "San Fernando"}, {value: "San Francisco Lempa", label: "San Francisco Lempa"},
-    {value: "San Francisco Morazán", label: "San Francisco Morazán"}, {value: "San Ignacio", label: "San Ignacio"}, {value: "San Isidro Labrador", label: "San Isidro Labrador"},
-    {value: "San José Cancasque", label: "San José Cancasque"}, {value: "San José Las Flores", label: "San José Las Flores"}, {value: "San Luis del Carmen", label: "San Luis del Carmen"},
-    {value: "San Miguel de Mercedes", label: "San Miguel de Mercedes"}, {value: "San Rafael", label: "San Rafael"}, {value: "Santa Rita", label: "Santa Rita"},
+  const dataMunicipality = [{
+    value: "Seleccione un municipio",
+    label: "Seleccione un municipio"
+  }, {value: "Agua Caliente", label: "Agua Caliente"},
+    {value: "Arcatao", label: "Arcatao"}, {value: "Azacualpa", label: "Azacualpa"}, {
+      value: "Chalatenango",
+      label: "Chalatenango"
+    },
+    {value: "Citalá", label: "Citalá"}, {value: "Comalapa", label: "Comalapa"}, {
+      value: "Concepción Quezaltepeque",
+      label: "Concepción Quezaltepeque"
+    },
+    {value: "Dulce Nombre de María", label: "Dulce Nombre de María"}, {
+      value: "El Carrizal",
+      label: "El Carrizal"
+    }, {value: "El Paraíso", label: "El Paraíso"},
+    {value: "La Laguna", label: "La Laguna"}, {value: "La Palma", label: "La Palma"}, {
+      value: "La Reina",
+      label: "La Reina"
+    }, {value: "Las Vueltas", label: "Las Vueltas"},
+    {value: "Nombre de Jesús", label: "Nombre de Jesús"}, {
+      value: "Nueva Concepción",
+      label: "Nueva Concepción"
+    }, {value: "Nueva Trinidad", label: "Nueva Trinidad"},
+    {value: "Ojos de Agua", label: "Ojos de Agua"}, {
+      value: "Potonico",
+      label: "Potonico"
+    }, {value: "San Antonio de la Cruz", label: "San Antonio de la Cruz"},
+    {value: "San Antonio Los Ranchos", label: "San Antonio Los Ranchos"}, {
+      value: "San Fernando",
+      label: "San Fernando"
+    }, {value: "San Francisco Lempa", label: "San Francisco Lempa"},
+    {value: "San Francisco Morazán", label: "San Francisco Morazán"}, {
+      value: "San Ignacio",
+      label: "San Ignacio"
+    }, {value: "San Isidro Labrador", label: "San Isidro Labrador"},
+    {value: "San José Cancasque", label: "San José Cancasque"}, {
+      value: "San José Las Flores",
+      label: "San José Las Flores"
+    }, {value: "San Luis del Carmen", label: "San Luis del Carmen"},
+    {value: "San Miguel de Mercedes", label: "San Miguel de Mercedes"}, {
+      value: "San Rafael",
+      label: "San Rafael"
+    }, {value: "Santa Rita", label: "Santa Rita"},
     {value: "Tejutla", label: "Tejutla"}];
 
   useEffect(() => {
@@ -62,7 +96,7 @@ const AddRestaurantModal = ({
   }, [isUpdate, restaurant]);
 
   const handleChangePhone = (e) => {
-    const { value } = e.target;
+    const {value} = e.target;
     const regexObj = {
       regex9: /^([0-9]{4})(-)([0-9]{4})$/,
       regex8: /^([0-9]{4})(-)([0-9]{3})$/,
@@ -74,17 +108,17 @@ const AddRestaurantModal = ({
       regex2: /^([0-9]{2})$/,
       regex1: /^([0-9])$/,
     }
-    if (value.length > 0 ) {
+    if (value.length > 0) {
       setPhone((prevState) => {
         if (value.length > prevState.length && value.length <= 9) {
           if (regexObj[`regex${value.length}`].test(value)) {
-            if(value.length === 4){
+            if (value.length === 4) {
               return value + '-';
             }
             return value;
           }
         } else if (value.length < prevState.length) {
-          if(value.length === 4){
+          if (value.length === 4) {
             return value.slice(0, -1);
           }
           return value;
@@ -98,7 +132,7 @@ const AddRestaurantModal = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(!imageSelected){
+    if (!imageSelected) {
       setShowMessage({
         message: 'Debe seleccionar una imagen',
         type: 'error',
@@ -123,7 +157,7 @@ const AddRestaurantModal = ({
     bodyFormData.append('phone', phone);
     bodyFormData.append('openingHour', openingHour);
     bodyFormData.append('closingHour', closingHour);
-    const { errors } = await createOrUpdateProduct({
+    const {errors} = await createOrUpdateProduct({
       variables: bodyFormData,
     });
 
@@ -154,7 +188,7 @@ const AddRestaurantModal = ({
 
   return (
     <Modal
-      width={400}
+      width={500}
       isOpen={isOpen}
       onCancel={() => {
         setPhone('');
@@ -202,20 +236,38 @@ const AddRestaurantModal = ({
           value={phone}
           onChange={handleChangePhone}
         />
-        <Input
-          name="openingHour"
-          placeholder="OpeningHour"
-          type="time"
-          defaultValue={restaurant?.openingHour}
-          required
-        />
-        <Input
-          name="closingHour"
-          placeholder="ClosingHour"
-          type="time"
-          defaultValue={restaurant?.closingHour}
-          required
-        />
+        <div style={
+          {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-evenly'
+          }
+        }>
+          <Text>Hora de apertura: </Text>
+          <InputStyled
+            name="openingHour"
+            placeholder="OpeningHour"
+            type="time"
+            defaultValue={restaurant?.openingHour}
+            required
+          />
+        </div>
+        <div style={
+          {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-around'
+          }
+        }>
+          <Text>Hora de cierre: </Text>
+          <InputStyled
+            name="closingHour"
+            placeholder="ClosingHour"
+            type="time"
+            defaultValue={restaurant?.closingHour}
+            required
+          />
+        </div>
         <Input
           display="none"
           id={'image'}
