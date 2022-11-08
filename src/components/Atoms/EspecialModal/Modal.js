@@ -17,7 +17,7 @@ const Modal = ({
   title,
   okText,
   okProps = {},
-  cancelText = 'Cancel',
+  cancelText = 'Cancelar',
   cancelProps = {
     onClick: onCancel,
   },

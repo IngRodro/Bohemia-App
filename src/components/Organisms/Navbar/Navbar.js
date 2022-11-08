@@ -1,12 +1,10 @@
 import MenuNavbar from '../../Molecules/MenuNavbar';
 import { StyleNavbar } from './style';
 import Title from '../../Atoms/Title';
-import { useAuth } from 'Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../Atoms/Logo';
 
-const Navbar = () => {
-  const { isAuthenticated } = useAuth();
+const Navbar = ({signButton}) => {
   const navigate = useNavigate();
   return (
     <StyleNavbar>
@@ -28,7 +26,7 @@ const Navbar = () => {
         {'Bohemia'}
       </Title>
       </div>
-      <MenuNavbar />
+      <MenuNavbar signButton={signButton}/>
     </StyleNavbar>
   );
 };

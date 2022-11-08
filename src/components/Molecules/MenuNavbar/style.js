@@ -15,6 +15,10 @@ export const StyleMenuItem = styled(Button)`
   margin-right: 10px;
   min-width: auto;
   transition: color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
   font-weight: 700;
   border-radius: ${({ $type }) => ($type === 'PageItem' ? '0' : '50')}%;
   background: transparent;

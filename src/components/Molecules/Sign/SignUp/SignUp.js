@@ -9,11 +9,9 @@ import {
 import Input from '../../../Atoms/Input';
 import Swal from 'sweetalert2';
 import { SignContext } from '../../../../Context/signContext';
-import withReactContent from 'sweetalert2-react-content';
 import { useAuth } from 'Context/AuthContext';
 
 const SignInForm = () => {
-  const MySwal = withReactContent(Swal);
   const { ChangeSignForm } = useContext(SignContext);
   const [name, setName] = React.useState('');
   const [username, setUsername] = React.useState('');
@@ -65,7 +63,6 @@ const SignInForm = () => {
     }
   };
 
-  const regexphonewithguion = /^([0-9]{3})-([0-9]{3})-([0-9]{4})$/;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,14 +99,14 @@ const SignInForm = () => {
       <FormContainer onSubmit={handleSubmit}>
         <Input
           type="text"
-          placeholder="Full Name"
+          placeholder="Nombre completo"
           name={'name'}
           onChange={handleChange}
           value={name}
         />
         <Input
           type="text"
-          placeholder="Username"
+          placeholder="Nombre de usuario"
           name={'username'}
           id={'username'}
           onChange={handleChange}
@@ -117,24 +114,24 @@ const SignInForm = () => {
         />
         <Input
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
           name={'password'}
           onChange={handleChange}
           value={password}
         />
         <Input
           type="password"
-          placeholder="Confirm Password"
+          placeholder="Confirma tu contraseña"
           name={'passwordConfirm'}
           onChange={handleChange}
           value={passwordConfirm}
         />
-        <SubmitButton type="submit">Signup</SubmitButton>
+        <SubmitButton type="submit">Registrarme</SubmitButton>
       </FormContainer>
       <MutedLink href="#">
-        Already have an account?
+        ¿Ya tienes una cuenta?
         <BoldLink href="#" onClick={ChangeSignForm}>
-          SignIn
+          Inicia sesión
         </BoldLink>
       </MutedLink>
     </BoxContainer>

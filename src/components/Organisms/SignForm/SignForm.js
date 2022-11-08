@@ -53,15 +53,15 @@ const RenderSignForm = () => {
         />
         {signForm === 'signIn' ? (
           <HeaderContainer>
-            <HeaderText>Welcome</HeaderText>
-            <HeaderText>Back</HeaderText>
-            <SmallText>Please sign-in to continue!</SmallText>
+            <HeaderText>Bienvenido de</HeaderText>
+            <HeaderText>nuevo</HeaderText>
+            <SmallText>¡Por favor, inicie sesión para continuar!</SmallText>
           </HeaderContainer>
         ) : (
           <HeaderContainer>
-            <HeaderText>Register</HeaderText>
-            <HeaderText>Now</HeaderText>
-            <SmallText>Please sign-up to continue!</SmallText>
+            <HeaderText>Regístrate</HeaderText>
+            <HeaderText>Ahora</HeaderText>
+            <SmallText>¡Por favor, regístrese para continuar!</SmallText>
           </HeaderContainer>
         )}
       </TopContainer>

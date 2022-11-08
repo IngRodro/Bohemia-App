@@ -59,12 +59,12 @@ const CardMenu = ({
         <ActionWrapper>
           {onUpdate && (
             <Button color={'success'} onClick={() => onUpdate()}>
-              Update
+              Actualizar
             </Button>
           )}
           {onDelete && (
             <Button color={'error'} onClick={() => onDelete()}>
-              Delete
+              Eliminar
             </Button>
           )}
         </ActionWrapper>

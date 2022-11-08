@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useAuth } from 'Context/AuthContext';
 
-const MenuNavbar = () => {
+const MenuNavbar = ({signButton = true}) => {
   const { logout } = useAuth();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const closeSession = async () => {
     let timerInterval;
     await Swal.fire({
-      title: 'Closing session',
+      title: 'Cerrando sesión',
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
@@ -58,15 +58,17 @@ const MenuNavbar = () => {
           </StyleMenuItem>
         </>
       ) : (
-        <StyleMenuItem
-          color="transparent"
-          labelColor="text"
-          $type={'ActionItem'}
-          onClick={() => navigate('/sign')}
-        >
-          Sign In
-          <StyleLogInIcon size={24} />
-        </StyleMenuItem>
+        signButton && (
+          <StyleMenuItem
+            color="transparent"
+            labelColor="text"
+            $type={'ActionItem'}
+            onClick={() => navigate('/sign')}
+          >
+            Iniciar Sesión
+            <StyleLogInIcon size={24} />
+          </StyleMenuItem>
+        )
       )}
     </StyleMenuNavbar>
   );

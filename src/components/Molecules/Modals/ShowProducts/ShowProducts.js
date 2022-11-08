@@ -40,7 +40,7 @@ const ShowProductsModal = ({ isOpen, onCancel, setProducts }) => {
       isOpen={isOpen}
       onCancel={onCancel}
       title="Seleccione un Producto"
-      cancelText="Cancel"
+      cancelText="Cancelar"
       width={720}
       closeButton={true}
       okText={'Agregar nuevo Producto'}

@@ -8,9 +8,9 @@ import Restaurants from 'pages/Restaurants/Restaurants';
 import Products from 'pages/Products/Products';
 import Menus from 'pages/Menus/Menus';
 import Logout from 'pages/Logout/Logout';
-import SignForm from 'components/Organisms/SignForm';
 import RestaurantsHome from '../pages/Home/RestaurantsHome';
 import MenusHome from '../pages/Home/MenusHome';
+import SignPage from '../pages/Sign/SignPage';
 
 const { ROUTES } = config;
 
@@ -26,7 +26,7 @@ const Routes = () => {
               element={<RestaurantsHome />}
             />
             <Route path={ROUTES.HOME_MENUS.path} element={<MenusHome />} />
-            <Route path="Sign" element={<SignForm />} />
+            <Route path="Sign" element={<SignPage />} />
           </Route>
           <Route path="/app" element={<PrivateRoute />}>
             <Route

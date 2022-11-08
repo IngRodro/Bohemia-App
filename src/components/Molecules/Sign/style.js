@@ -22,7 +22,7 @@ export const FormContainer = styled.form`
 `;
 
 export const MutedLink = styled.p`
-  font-size: 11px;
+  font-size: 14px;
   color: rgba(52, 52, 52, 0.8);
   font-weight: 500;
   text-decoration: none;
@@ -30,7 +30,7 @@ export const MutedLink = styled.p`
 `;
 
 export const BoldLink = styled.a`
-  font-size: 11px;
+  font-size: 14px;
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 500;
   text-decoration: none;
@@ -38,7 +38,7 @@ export const BoldLink = styled.a`
 `;
 
 export const SubmitButton = styled.button`
-  width: 30%;
+  width: 50%;
   padding: 10px;
   color: ${({ theme }) => theme.colors.buttonText};
   font-size: 15px;

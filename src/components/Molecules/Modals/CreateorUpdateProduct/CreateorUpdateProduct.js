@@ -89,7 +89,7 @@ const AddProductModal = ({
       <form id="form-product" method="POST" onSubmit={onSubmit}>
         <Input
           name="name"
-          placeholder="Name"
+          placeholder="Nombre"
           type="text"
           defaultValue={product?.name}
           required

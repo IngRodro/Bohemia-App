@@ -10,11 +10,9 @@ import {
 import Input from 'components/Atoms/Input';
 import { useAuth } from 'Context/AuthContext';
 import { SignContext } from 'Context/signContext';
-import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
   const { isAuthenticated, login } = useAuth();
-  const navigate = useNavigate();
   const { ChangeSignForm } = useContext(SignContext);
   const [Username, setUsername] = useState('');
   const [Password, setPassword] = useState('');
@@ -66,13 +64,13 @@ const SignInForm = () => {
           placeholder="Password"
           onChange={onChangePassword}
         />
-        <SubmitButton type="submit">SignIn</SubmitButton>
+        <SubmitButton type="submit">Iniciar sesión</SubmitButton>
       </FormContainer>
 
       <MutedLink href="#">
-        Don't have an account?{' '}
+        ¿No tienes cuenta?
         <BoldLink href="#" onClick={ChangeSignForm}>
-          Signup
+          Registrate
         </BoldLink>
       </MutedLink>
     </BoxContainer>

@@ -51,7 +51,7 @@ export const HeaderText = styled.h2`
 export const SmallText = styled.h5`
   color: #fff;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 14px;
   z-index: 10;
   margin: 7px 0 0 0;
 `;

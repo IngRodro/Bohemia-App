@@ -176,13 +176,13 @@ const AddMenuOptionModal = ({
       <form id="form-menu" method="POST" onSubmit={onSubmit}>
         <Input
           name="name"
-          placeholder="Name"
+          placeholder="Nombre"
           type="text"
           defaultValue={menu?.name}
         />
         <Input
           name="price"
-          placeholder="Price"
+          placeholder="Precio"
           type="text"
           onChange={onChangePrice}
           defaultValue={menu?.price}

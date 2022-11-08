@@ -175,7 +175,7 @@ const AddRestaurantModal = ({
       <form id="form-restaurant" method="POST" onSubmit={onSubmit}>
         <Input
           name="name"
-          placeholder="Name"
+          placeholder="Nombre"
           type="text"
           defaultValue={restaurant?.name}
           required
@@ -188,14 +188,14 @@ const AddRestaurantModal = ({
         />
         <Input
           name="direction"
-          placeholder="Direction"
+          placeholder="Dirección"
           type="text"
           defaultValue={restaurant?.direction}
           required
         />
         <Input
           name="phone"
-          placeholder="Phone"
+          placeholder="Teléfono"
           type="tel"
           defaultValue={restaurant?.phone}
           required
@@ -225,7 +225,7 @@ const AddRestaurantModal = ({
           accept="image/*"
         />
       </form>
-      <H2>Image</H2>
+      <H2>Seleccione una Imagen</H2>
       <ImagePreview
         src={urlImage}
         alt={restaurant?.name}

@@ -66,12 +66,12 @@ const CardRestaurant = ({
         <ActionWrapper>
           {onUpdate && (
             <Button color={'success'} onClick={() => onUpdate()}>
-              Update
+              Actualizar
             </Button>
           )}
           {onDelete && (
             <Button color={'error'} onClick={() => onDelete()}>
-              Delete
+              Eliminar
             </Button>
           )}
           {onViewMenu && (<Button color={'primary'} onClick={() => onViewMenu()}>Ver Menu</Button>)}
