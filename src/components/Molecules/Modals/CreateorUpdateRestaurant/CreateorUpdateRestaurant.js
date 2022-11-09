@@ -138,6 +138,7 @@ const AddRestaurantModal = ({
       });
       return;
     }
+
     const name = e.target.name.value;
     const image = e.target.image.files[0];
     const municipality = municipal;
@@ -146,6 +147,14 @@ const AddRestaurantModal = ({
     const phone = e.target.phone.value;
     const openingHour = e.target.openingHour.value;
     const closingHour = e.target.closingHour.value;
+
+    if(!name || !municipality || !department || !direction || !phone || !openingHour || !closingHour || municipality === 'Seleccione un municipio') {
+      setShowMessage({
+        message: 'Debe llenar todos los campos',
+        type: 'error',
+      });
+      return;
+    }
 
     let bodyFormData = new FormData();
     bodyFormData.append('name', name);
@@ -213,7 +222,6 @@ const AddRestaurantModal = ({
           placeholder="Nombre"
           type="text"
           defaultValue={restaurant?.name}
-          required
         />
         <Select
           label="Municipio"
@@ -226,14 +234,12 @@ const AddRestaurantModal = ({
           placeholder="Dirección"
           type="text"
           defaultValue={restaurant?.direction}
-          required
         />
         <Input
           name="phone"
           placeholder="Teléfono"
           type="tel"
           defaultValue={restaurant?.phone}
-          required
           value={phone}
           onChange={handleChangePhone}
         />
@@ -250,7 +256,6 @@ const AddRestaurantModal = ({
             placeholder="OpeningHour"
             type="time"
             defaultValue={restaurant?.openingHour}
-            required
           />
         </div>
         <div style={
@@ -266,7 +271,6 @@ const AddRestaurantModal = ({
             placeholder="ClosingHour"
             type="time"
             defaultValue={restaurant?.closingHour}
-            required
           />
         </div>
         <Input
