@@ -6,7 +6,6 @@ import {H2, ImagePreview, InputStyled} from './style';
 import {useEffect, useState} from 'react';
 import Select from 'components/Atoms/SelectMaterialUI';
 import {Text} from '../CreateorUpdateMenusOptions/style';
-import {SecurityUpdateWarning} from '@styled-icons/material-sharp';
 import Swal from 'sweetalert2';
 
 const AddRestaurantModal = ({
@@ -134,9 +133,10 @@ const AddRestaurantModal = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!imageSelected) {
-      setShowMessage({
-        message: 'Debe seleccionar una imagen',
-        type: 'error',
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe seleccionar una imagen',
       });
       return;
     }
@@ -153,7 +153,7 @@ const AddRestaurantModal = ({
     const regexPhone = /^([0-9]{4})(-)([0-9]{4})$/;
 
     if(!regexPhone.test(phone)){
-      Swal.fire({
+      await Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'El número de teléfono no es válido',
