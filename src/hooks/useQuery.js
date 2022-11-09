@@ -46,4 +46,5 @@ const useQuery = (
   return { loading, data, errors, refresh: getData };
 };
 
+//Hola
 export default useQuery;
