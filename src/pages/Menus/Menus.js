@@ -118,7 +118,7 @@ function Menus() {
 
   return (
     <Layout>
-      <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} onAdd={onAdd}/>
+      <HeaderPage title={`Menú de ${name}`} onRefresh={refresh} onAdd={onAdd}/>
       {loading ? (
         <Row>
           <Col xs={12} md={6} lg={4}>

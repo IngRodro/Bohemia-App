@@ -153,9 +153,10 @@ const AddRestaurantModal = ({
     const regexPhone = /^([0-9]{4})(-)([0-9]{4})$/;
 
     if(!regexPhone.test(phone)){
-      setShowMessage({
-        message: 'El formato del teléfono es incorrecto',
-        type: 'error',
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El número de teléfono no es válido',
       });
       return;
     }

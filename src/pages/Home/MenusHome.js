@@ -28,7 +28,7 @@ function MenusHome() {
 
   return (
     <Layout>
-      <HeaderPage title={`Menu de ${name}`} onRefresh={refresh} />
+      <HeaderPage title={`Menú de ${name}`} onRefresh={refresh} />
       {loading ? (
         <p>
           <Row>
