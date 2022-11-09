@@ -150,6 +150,16 @@ const AddRestaurantModal = ({
     const openingHour = e.target.openingHour.value;
     const closingHour = e.target.closingHour.value;
 
+    const regexPhone = /^([0-9]{4})(-)([0-9]{4})$/;
+
+    if(!regexPhone.test(phone)){
+      setShowMessage({
+        message: 'El formato del teléfono es incorrecto',
+        type: 'error',
+      });
+      return;
+    }
+
     if(!name || !municipality || !department || !direction || !phone || !openingHour || !closingHour || municipality === 'Seleccione un municipio') {
       await Swal.fire({
         icon: 'error',
