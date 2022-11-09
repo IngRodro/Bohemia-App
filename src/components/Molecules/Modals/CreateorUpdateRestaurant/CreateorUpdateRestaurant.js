@@ -151,7 +151,7 @@ const AddRestaurantModal = ({
     const closingHour = e.target.closingHour.value;
 
     if(!name || !municipality || !department || !direction || !phone || !openingHour || !closingHour || municipality === 'Seleccione un municipio') {
-      Swal.fire({
+      await Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Debe llenar todos los campos',
