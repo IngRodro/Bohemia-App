@@ -17,7 +17,7 @@ export const AppThemeProvider = ({ children }) => {
   };
 
   const themeToggle = () => {
-    setMode(theme === 'light' ? 'dark' : 'light');
+    setMode(theme === 'light' ? 'light' : 'light');
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const AppThemeProvider = ({ children }) => {
     if (localTheme) {
       setMode(localTheme);
     } else {
-      setMode(deviceTheme ? 'dark' : 'light');
+      setMode(deviceTheme ? 'light' : 'light');
     }
   }, []);
 
