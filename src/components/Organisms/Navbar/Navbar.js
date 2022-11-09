@@ -18,8 +18,9 @@ const Navbar = ({signButton}) => {
       }>
       <Logo></Logo>
       <Title
-        color="primary"
-        size={30}
+        fontFamily="Bodoni MT"
+        color="#fff"
+        size={56}
         button={true}
         onClick={() => navigate('/home/restaurants')}
       >

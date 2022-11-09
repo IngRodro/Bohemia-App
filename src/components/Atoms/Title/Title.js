@@ -7,6 +7,7 @@ const Title = ({
   size = 45,
   lineHeight = size + 20,
   button = false,
+  fontFamily = 'Arial Narrow',
   ...restProps
 }) => {
   return (
@@ -16,6 +17,7 @@ const Title = ({
       $color={color}
       $lineHeight={lineHeight}
       $button={button}
+      $fontFamily={fontFamily}
       {...restProps}
     >
       {children}
