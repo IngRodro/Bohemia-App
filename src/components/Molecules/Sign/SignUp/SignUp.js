@@ -38,7 +38,11 @@ const SignInForm = () => {
         text: 'Passwords do not match',
         icon: 'error',
       });
-    } else {
+    } else if(password.length <= 8) {await Swal.fire({
+        title: 'Error',
+        text: 'Passwords do not match',
+        icon: 'error',
+      });} else{
       const payload = {
         name,
         username,
