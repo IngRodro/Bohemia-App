@@ -29,18 +29,18 @@ const SignInForm = () => {
     ) {
       await Swal.fire({
         title: 'Error',
-        text: 'All fields are required',
+        text: 'Todos los campos son necesarios',
         icon: 'error',
       });
     } else if (password !== passwordConfirm) {
       await Swal.fire({
         title: 'Error',
-        text: 'Passwords do not match',
+        text: 'Las contraseñas no coinciden',
         icon: 'error',
       });
-    } else if(password.length <= 8) {await Swal.fire({
+    } else if(password.length < 8) {await Swal.fire({
         title: 'Error',
-        text: 'Passwords do not match',
+        text: 'El minimo de carácteres en la contraseña es 8',
         icon: 'error',
       });} else{
       const payload = {
