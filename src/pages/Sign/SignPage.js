@@ -3,8 +3,8 @@ import SignForm from '../../components/Organisms/SignForm';
 
 const SignPage = () => {
   return (
-    <Layout const signButton={false}>
-      <SignForm/>
+    <Layout const signButton={false} title="Sign" SignPage={true} >
+      <SignForm />
     </Layout>
   );
 };

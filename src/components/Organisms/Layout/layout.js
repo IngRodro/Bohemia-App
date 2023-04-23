@@ -1,13 +1,25 @@
 import { Container } from 'react-grid-system';
+import { Helmet } from 'react-helmet';
+import SignContainer from './style';
 
 import Navbar from 'components/Organisms/Navbar';
 
-const Layout = ({ children, navbar = true , signButton = true}) => {
+const Layout = ({ children, title, SignPage = false }) => {
   return (
-    <div className="App">
-      {navbar && <Navbar signButton={signButton}/>}
-      <Container>{children}</Container>
-    </div>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{title}</title>
+      </Helmet>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <Container>
+          {SignPage ? <SignContainer>{children}</SignContainer> : <Container>{children}</Container>}
+        </Container>
+      </main>
+    </>
   );
 };
 

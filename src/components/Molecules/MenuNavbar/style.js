@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Button from '../../Atoms/Button';
-import { DarkTheme } from '@styled-icons/fluentui-system-regular/DarkTheme';
-import { DoorArrowLeft } from '@styled-icons/fluentui-system-regular/DoorArrowLeft';
-import { LogIn } from '@styled-icons/boxicons-regular/LogIn';
+import {
+  IconSunFilled, IconLogin, IconLogout, IconMoonStars,
+} from '@tabler/icons-react';
 
 export const StyleMenuNavbar = styled.div`
   width: auto;
@@ -20,17 +20,23 @@ export const StyleMenuItem = styled(Button)`
   align-items: center;
   width: max-content;
   font-weight: 700;
+  color: ${({ theme }) => (theme.colors.text)};
   border-radius: ${({ $type }) => ($type === 'PageItem' ? '0' : '50')}%;
   background: transparent;
-  &:hover {
+  > svg {
+    margin-left: 5px;
+  }
+  :hover {
     opacity: 1;
+    border-bottom-color: ${({ theme, $type }) => ($type === 'PageItem' ? theme.colors.primary : 'transparent')};
     color: ${({ theme }) => theme.colors.primary};
-    border-bottom-color: ${({ theme, $type }) =>
-      $type === 'PageItem' ? theme.colors.primary : 'transparent'};
+    > svg {
+      color: ${({ theme, $colorSvgHover }) => theme.colors[$colorSvgHover]};
+    }
   }
 `;
 
-export const StyleThemeIcon = styled(DarkTheme)`
+export const StyleThemeIcon = styled(IconSunFilled)`
   color: ${({ theme }) => theme.colors.text};
 
   &:hover {
@@ -38,18 +44,20 @@ export const StyleThemeIcon = styled(DarkTheme)`
   }
 `;
 
-export const StyleCloseSessionIcon = styled(DoorArrowLeft)`
+export const StyleThemeIconDark = styled(IconMoonStars)`
   color: ${({ theme }) => theme.colors.text};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.error};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
-export const StyleLogInIcon = styled(LogIn)`
+export const StyleCloseSessionIcon = styled(IconLogout)`
   color: ${({ theme }) => theme.colors.text};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.success};
-  }
 `;
+
+export const StyleLogInIcon = styled(IconLogin)`
+  color: ${({ theme }) => theme.colors.text};
+  transition: color 0.3s;
+`;
+

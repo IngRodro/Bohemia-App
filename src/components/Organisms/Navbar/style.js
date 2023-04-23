@@ -15,3 +15,10 @@ export const StyleNavbar = styled.nav`
   background: ${({ theme }) => theme.colors.nav};
   z-index: ${({ theme }) => theme.zIndex.nav};
 `;
+
+export const StyleLogoWrapper = styled.div`
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  width: '100%',
+`;

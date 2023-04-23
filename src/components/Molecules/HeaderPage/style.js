@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Refresh } from '@styled-icons/heroicons-solid/Refresh';
+import { Refresh } from '@styled-icons/boxicons-regular/Refresh';
 
 export const StyleWrapper = styled.div`
   display: flex;

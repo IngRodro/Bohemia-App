@@ -1,37 +1,32 @@
-import MenuNavbar from '../../Molecules/MenuNavbar';
-import { StyleNavbar } from './style';
-import Title from '../../Atoms/Title';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../Atoms/Logo';
+import MenuNavbar from '../../Molecules/MenuNavbar';
+import { StyleNavbar, StyleLogoWrapper } from './style';
+import Title from '../../Atoms/Title';
+import Bohemia from '../../Atoms/Icons/Bohemia';
+import { useAppTheme } from '../../../Context/themeContext';
 
-const Navbar = ({signButton}) => {
+function Navbar({ signButton }) {
+  const { theme } = useAppTheme();
   const navigate = useNavigate();
   return (
     <StyleNavbar>
-      <div style={
-        {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          width: '100%',
-        }
-      }>
-      <Logo></Logo>
-      <Title
-        fontFamily="Bodoni MT"
-        color="#fff"
-        size={56}
-        button={true}
-        onClick={() => navigate('/home/restaurants')}
-      >
-        {'Bohemia'}
-      </Title>
-      </div>
-      <MenuNavbar signButton={signButton}/>
+      <StyleLogoWrapper>
+        <Bohemia
+          width={300}
+          height={300}
+          fill={theme === 'light' ? '#000' : '#fff'}
+        />
+        <Title
+          fontFamily="Bodoni MT"
+          color="#fff"
+          size={56}
+          button
+          onClick={() => navigate('/')}
+        />
+      </StyleLogoWrapper>
+      <MenuNavbar signButton={signButton} />
     </StyleNavbar>
   );
-};
-
-
+}
 
 export default Navbar;

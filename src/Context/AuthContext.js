@@ -17,7 +17,7 @@ const defaultValue = {
   loading: false,
   loadingAuth: false,
   logout: () => {},
-  login: (_email, _password) => {
+  login: async (_email, _password) => {
   },
   signUp: (_data) => new Promise(() => {}),
 };
@@ -25,26 +25,25 @@ const defaultValue = {
 const AuthContext = createContext(defaultValue);
 
 export const AuthProvider = ({ children }) => {
-  const cookies = new Cookies();
   const [loading, setLoading] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [token, setToken] = useState(null);
 
   const [
     SignIn,
-    { loading: loadingSignIn, data: _dataSign, errors: errorsSignIn },
   ] = useMutation('/users/login/', {
     method: 'post',
   });
 
   const [
     SignUp,
-    { loading: loadingSignUp, data: dataSignUp, errors: errorsSignUp },
+    { data: dataSignUp },
   ] = useMutation('/users/', {
     method: 'post',
   });
 
   const persisUser = useCallback((token) => {
+    const cookies = new Cookies();
     cookies.set('token', token, { path: '/', maxAge: 86400 });
   }, []);
 
@@ -59,7 +58,7 @@ export const AuthProvider = ({ children }) => {
       }
       return errors;
     },
-    [persisUser]
+    [persisUser, SignIn]
   );
 
   const signUp = useCallback(
@@ -75,16 +74,18 @@ export const AuthProvider = ({ children }) => {
 
       return errors;
     },
-    [persisUser]
+    [persisUser, dataSignUp, SignUp]
   );
 
   const logout = useCallback(() => {
+    const cookies = new Cookies();
     cookies.remove('token', { path: '/' });
     setToken(null);
     window.location.assign(ROUTES.HOME_RESTAURANTS.absolutePath);
   }, []);
 
   useEffect(() => {
+    const cookies = new Cookies();
     setLoadingAuth(true);
     const data = cookies.get('token');
     if (data) setToken(data);

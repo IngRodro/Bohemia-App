@@ -17,7 +17,7 @@ export const AppThemeProvider = ({ children }) => {
   };
 
   const themeToggle = () => {
-    setMode(theme === 'light' ? 'light' : 'light');
+    setMode(theme === 'light' ? 'dark' : 'light');
   };
 
   useEffect(() => {
