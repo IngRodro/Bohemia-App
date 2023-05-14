@@ -34,8 +34,11 @@ export const StyleCloseIcon = styled(CloseOutline)`
 `;
 
 export const customStyles = {
+  // Dark overlay
   overlay: {
-    backdropFilter: 'saturate(180%) blur(20px)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 1000,
+    backdropFilter: 'blur(50px)',
   },
   content: {
     top: '50%',
@@ -48,7 +51,7 @@ export const customStyles = {
     borderRadius: 0,
     border: 'none',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-    background: 'rgba(255, 255, 255, 0.9)',
+    background: 'rgba(255, 255, 255, 0.8)',
   },
 };
 

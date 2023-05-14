@@ -1,7 +1,8 @@
+import { StyledFormControl } from './style';
+
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectLabels({
@@ -15,7 +16,7 @@ export default function SelectLabels({
   ...props
                                      }) {
   return (
-    <FormControl fullWidth error={error} {...props}>
+    <StyledFormControl fullWidth error={error} {...props}>
       <InputLabel id="demo-simple-select-label">{label}</InputLabel>
       <Select
         labelId="labelType"
@@ -32,6 +33,6 @@ export default function SelectLabels({
         ))}
       </Select>
       <FormHelperText>{helperText}</FormHelperText>
-    </FormControl>
+    </StyledFormControl>
   );
 }
