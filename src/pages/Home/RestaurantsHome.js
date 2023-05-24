@@ -18,7 +18,7 @@ function RestaurantsHome() {
     localStorage.getItem('municipality') || 'Seleccione un municipio'
   );
   const [totalPages, setTotalPages] = useState(0);
-  const { data, loading, refresh } = useQuery(
+  const { data, loading, refresh, errors } = useQuery(
     '/restaurants/',
     page,
     municipality === 'Seleccione un municipio' ? '' : municipality,
@@ -51,6 +51,8 @@ function RestaurantsHome() {
     setTotalPages(data?.totalPages || 0);
   }, [data?.totalPages]);
 
+  console.log(errors)
+
   return (
     <Layout>
       <HeaderPage
@@ -79,7 +81,7 @@ function RestaurantsHome() {
         }
         onRefresh={refresh}
       />
-      {loading ? (
+      {loading || errors ? (
         <Row>
           <Col xs={12} md={6} lg={4}>
             <Skeleton variant="rectangular" width={"100%"} height={300} />

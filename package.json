@@ -25,7 +25,7 @@
     "react-modal": "^3.15.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "react-select": "^5.3.2",
+    "react-select": "^5.7.3",
     "styled-components": "^5.3.5",
     "styled-icons": "^10.45.0",
     "sweetalert2": "^11.4.15",

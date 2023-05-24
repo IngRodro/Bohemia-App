@@ -1,9 +1,9 @@
-import { StyledFormControl } from './style';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
+import { ThemeProvider } from '@mui/material/styles';
+import FormControl from '@mui/material/FormControl';
+import useTheme from 'hooks/useTheme';
 
 export default function SelectLabels({
   label,
@@ -14,25 +14,27 @@ export default function SelectLabels({
   helperText,
   readOnly,
   ...props
-                                     }) {
+}) {
+  const theme = useTheme();
   return (
-    <StyledFormControl fullWidth error={error} {...props}>
-      <InputLabel id="demo-simple-select-label">{label}</InputLabel>
-      <Select
-        labelId="labelType"
-        id="Select Type"
-        value={value}
-        label={label}
-        onChange={onChange}
-        inputProps={{readOnly:  readOnly}}
-      >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
-      <FormHelperText>{helperText}</FormHelperText>
-    </StyledFormControl>
+    <ThemeProvider theme={theme}>
+      <FormControl variant="outlined" fullWidth error={error} {...props}>
+        <InputLabel>{label}</InputLabel>
+        <Select
+          labelId="labelType"
+          id="Select Type"
+          value={value}
+          label={label}
+          onChange={onChange}
+          inputProps={{ readOnly: readOnly }}
+        >
+          {options.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </ThemeProvider>
   );
 }
