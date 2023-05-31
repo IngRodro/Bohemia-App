@@ -36,6 +36,7 @@ export const StyleCloseIcon = styled(CloseOutline)`
 export const customStyles = {
   overlay: {
     backdropFilter: 'saturate(180%) blur(20px)',
+    zIndex: 1001,
   },
   content: {
     top: '50%',
