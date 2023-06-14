@@ -1,38 +1,33 @@
-#notfound {
+import styled from 'styled-components';
+
+export const NotFoundWrapper = styled.div`
   position: relative;
   height: 80vh;
-}
+`;
 
-#notfound .notfound{
+export const NotFoundInner = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.notfound {
+  transform: translate(-50%, -50%);
   max-width: 720px;
   width: 100%;
   line-height: 1.4;
   text-align: center;
   padding-left: 15px;
   padding-right: 15px;
-}
+`;
 
-.notfound .notfound-404 {
+export const NotFound404 = styled.div`
   position: relative;
   height: 100px;
   top: 0;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   z-index: -1;
-}
+`;
 
-.notfound .notfound-404 h1 {
+export const NotFound404Header = styled.h1`
   font-family: 'Montserrat', sans-serif;
   color: #ececec;
   font-weight: 900;
@@ -41,27 +36,15 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-}
+`;
 
-.notfound h2 {
+export const NotFoundHeader = styled.h2`
   font-family: 'Montserrat', sans-serif;
   font-size: 40px;
   color: #000;
   font-weight: 900;
+  color: ${({ theme }) => theme.colors.primary};
   text-transform: uppercase;
   margin: 0;
-}
-
-.notfound p {
-  font-family:  'Montserrat', sans-serif;
-  font-size: 16px;
-  color: #000;
-  font-weight: 400;
-  margin-bottom: 0px;
-  text-transform: uppercase;
-  margin-top: 15px;
-}
-
+`;
