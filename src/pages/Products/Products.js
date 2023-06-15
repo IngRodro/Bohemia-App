@@ -99,44 +99,7 @@ function Products() {
     <Layout>
       <HeaderPage title="Products" onRefresh={refresh} onAdd={onToggle} />
       {loading ? (
-        <Row>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-        </Row>
+        <Skeleton></Skeleton>
       ) : data === null || data.length===0 ? (
         <NotFoundPage message={'Oops! Aun no has registrado ningun producto'} />
         ) : (

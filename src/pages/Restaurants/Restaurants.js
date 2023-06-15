@@ -12,7 +12,7 @@ import useMutation from '../../hooks/useMutation';
 import CreateOrUpdateRestaurant
   from '../../components/Molecules/Modals/CreateorUpdateRestaurant/CreateorUpdateRestaurant';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
-import Skeleton from '@mui/material/Skeleton';
+import Skeleton from 'components/Atoms/Skeleton';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -120,44 +120,7 @@ function Restaurants() {
         onAdd={onToggle}
       />
       {loading ? (
-        <Row>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-        </Row>
+        <Skeleton />
       ) : data === null || data.length === 0 ? (
         <NotFoundPage message={'Oops! Aun no has registrado ningun restuarante'}></NotFoundPage>
       ) : (

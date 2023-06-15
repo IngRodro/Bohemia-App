@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 import useMutation from '../../hooks/useMutation';
 import {useAuth} from 'Context/AuthContext';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
-import Skeleton from '@mui/material/Skeleton';
+import Skeleton from 'components/Atoms/Skeleton';
 import * as React from 'react';
 
 const Toast = Swal.mixin({
@@ -120,44 +120,7 @@ function Menus() {
     <Layout>
       <HeaderPage title={`Menú de ${name}`} onRefresh={refresh} onAdd={onAdd}/>
       {loading ? (
-        <Row>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-        </Row>
+        <Skeleton></Skeleton>
       ) : data === null || data.length === 0 ? (
           <NotFoundPage message={'Oops! Aun no hay ninguna opción de menu creada'}></NotFoundPage>
         ) :

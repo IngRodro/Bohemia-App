@@ -9,7 +9,7 @@ import SelectMaterialUi from '../../components/Atoms/SelectMaterialUI';
 import { PaginationContainer, StyledPagination } from '../style';
 import NotFoundPage from '../../components/Organisms/NotFoundPage';
 import Text from '../../components/Atoms/Text';
-import Skeleton from '@mui/material/Skeleton';
+import Skeleton from '../../components/Atoms/Skeleton';
 import * as React from 'react';
 
 function RestaurantsHome() {
@@ -82,44 +82,7 @@ function RestaurantsHome() {
         onRefresh={refresh}
       />
       {loading || errors ? (
-        <Row>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Skeleton variant="rectangular" width={"100%"} height={300} />
-            <Skeleton height={20}/>
-            <Skeleton height={20}/>
-            <Skeleton width={"100%"} height={40} />
-          </Col>
-        </Row>
+        <Skeleton />
       ) : data === null ? (
         <NotFoundPage message={'Oops! Aun no se han registrado restaurantes para este lugar'}></NotFoundPage>
       ) : (<>

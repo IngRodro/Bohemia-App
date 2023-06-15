@@ -27,6 +27,7 @@ const colorsLight = {
   shadowInput: 'rgb(224, 224, 224)',
   optionHover: '#f5f5f5',
   toggleButton: '#00000077',
+  skeleton: '#e0e0e0',
 };
 
 const colorsDark = {
@@ -46,6 +47,7 @@ const colorsDark = {
   shadowInput: 'rgb(207,207,207)',
   optionHover: '#1d1d1d',
   toggleButton: '#ffffff77',
+  skeleton: '#1d1d1d',
 };
 
 const zIndex = {
