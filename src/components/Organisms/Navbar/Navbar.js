@@ -15,6 +15,7 @@ function Navbar({ signButton }) {
           width={300}
           height={300}
           fill={theme === 'light' ? '#000' : '#fff'}
+          onClick={() => navigate('/')}
         />
         <Title
           fontFamily="Bodoni MT"

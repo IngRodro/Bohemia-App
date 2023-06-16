@@ -4,7 +4,7 @@ import SignContainer from './style';
 
 import Navbar from 'components/Organisms/Navbar';
 
-const Layout = ({ children, title, SignPage = false }) => {
+const Layout = ({ children, title = 'Bohemia', SignPage = false }) => {
   return (
     <>
       <Helmet>

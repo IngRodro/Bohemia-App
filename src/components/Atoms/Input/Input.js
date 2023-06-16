@@ -15,6 +15,7 @@ const Input = ({
   pattern,
   ...props
 }) => {
+  console.log(display)
   return (
     <StyleInput
       type={type}
@@ -23,7 +24,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      $display={display}
+      display={display}
       onFocus={onFocus}
       pattern={pattern}
       disabled={disabled}
