@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }) => {
 
   const [
     SignUp,
-    { data: dataSignUp },
   ] = useMutation('/users/', {
     method: 'post',
   });
@@ -66,15 +65,12 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const { errors } = await SignUp({ variables: payload });
       setLoading(false);
-
-      if (dataSignUp) {
-        persisUser(dataSignUp);
-        setToken(dataSignUp);
+      if (errors) {
+        return errors;
       }
-
-      return errors;
+      return;
     },
-    [persisUser, dataSignUp, SignUp]
+    [SignUp]
   );
 
   const logout = useCallback(() => {

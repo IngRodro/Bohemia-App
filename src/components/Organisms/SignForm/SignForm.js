@@ -7,6 +7,7 @@ import {
 } from './style';
 import Button from 'components/Atoms/Button';
 import { useAuth } from 'Context/AuthContext';
+import swal from 'sweetalert2';
 
 function App() {
   const [signIn, setSignIn] = useState(true);
@@ -36,12 +37,35 @@ function App() {
   const onSignIn = async (e) => {
     e.preventDefault();
     const result = await login(userSignIn.username, userSignIn.password);
-    console.log(result);
+    if(result?.response?.status === 401) {
+      await swal.fire({
+        title: '¡Error!',
+        text: 'Usuario o contraseña incorrecta',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    }
   };
 
-  const onSignUp = (e) => {
+  const onSignUp = async (e) => {
     e.preventDefault();
-    signUp(userSignUp);
+    const result = await signUp(userSignUp);
+    if(result?.response?.status === 409){
+      await swal.fire({
+        title: '¡Error!',
+        text: 'El nombre de usuario ya está en uso',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    } else {
+      await swal.fire({
+        title: '¡Éxito!',
+        text: 'Usuario creado correctamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      });
+      document.getElementById('signbtn').click();
+    }
   };
 
   return (
@@ -74,7 +98,7 @@ function App() {
             <Paragraph>
               To keep connected with us please login with your personal info
             </Paragraph>
-            <GhostButton onClick={() => setSignIn(true)}>
+            <GhostButton id="signbtn" onClick={() => setSignIn(true)}>
               Sign In
             </GhostButton>
           </LeftOverlayPanel>
