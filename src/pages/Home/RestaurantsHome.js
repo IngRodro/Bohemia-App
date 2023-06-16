@@ -21,7 +21,7 @@ function RestaurantsHome() {
   const { data, loading, refresh, errors } = useQuery(
     '/restaurants/',
     page,
-    municipality === 'Seleccione un municipio' ? '' : municipality,
+    municipality,
     true
   );
   const navigate = useNavigate();
