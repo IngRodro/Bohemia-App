@@ -7,13 +7,41 @@ import {
   StyleCloseSessionIcon,
   StyleLogInIcon,
 } from './style';
+import swal from 'sweetalert2';
 
 function MenuNavbar({ signButton = true }) {
   const { logout } = useAuth();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const closeSession = async () => {
-    logout();
+    swal
+      .fire({
+        title: '¿Estás seguro?',
+        text: '¿Quieres cerrar sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swal.fire({
+            title: 'Cerrando sesión',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              swal.showLoading();
+            },
+          }).then((result) => {
+            if (result.dismiss === swal.DismissReason.timer) {
+              logout();
+            }
+            else {
+              swal.fire('Cancelado', 'El cierre de sesión ha sido cancelado', 'error');
+            }
+          });
+        }
+      });
   };
 
   return (
