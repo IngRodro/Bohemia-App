@@ -4,10 +4,14 @@ import { StyleNavbar, StyleLogoWrapper } from './style';
 import Title from '../../Atoms/Title';
 import Bohemia from '../../Atoms/Icons/Bohemia';
 import { useAppTheme } from '../../../Context/themeContext';
+import { useAuth } from '../../../Context/AuthContext';
 
 function Navbar({ signButton }) {
   const { theme } = useAppTheme();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+
+
   return (
     <StyleNavbar>
       <StyleLogoWrapper>
@@ -15,7 +19,7 @@ function Navbar({ signButton }) {
           width={300}
           height={300}
           fill={theme === 'light' ? '#000' : '#fff'}
-          onClick={() => navigate('/')}
+          onClick={() => { if(isAuthenticated) {navigate('/app/restaurants')} else {navigate('/home/restaurants')}}}
         />
         <Title
           fontFamily="Bodoni MT"
